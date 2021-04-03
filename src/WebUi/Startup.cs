@@ -1,4 +1,5 @@
 using DevToDev.Application;
+using DevToDev.Application.Common.Interfaces;
 using DevToDev.Infrastructure;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebUi.Filters;
+using WebUi.Services;
 
 namespace WebUi
 {
@@ -26,6 +28,10 @@ namespace WebUi
         {
             services.AddApplication();
             services.AddInfrastructure(Configuration);
+
+            services.AddSingleton<ICurrentUserService, CurrentUserService>();
+
+            services.AddHttpContextAccessor();
 
             services.AddControllersWithViews(options =>
                 options.Filters.Add<ApiExceptionFilterAttribute>())
