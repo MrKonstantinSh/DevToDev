@@ -20,21 +20,18 @@ namespace DevToDev.Application.Identity.Commands.LogIn
     public class LogInCommandHandler : IRequestHandler<LogInCommand, LogInResponseDto>
     {
         private readonly IAppDbContext _context;
-        private readonly ITokenService _tokenService;
-        private readonly IDateTimeService _dateTimeService;
         private readonly ICurrentUserService _currentUserService;
-        private readonly IConfirmationTokenService _confirmationTokenService;
+        private readonly IDateTimeService _dateTimeService;
+        private readonly ITokenService _tokenService;
 
         public LogInCommandHandler(IAppDbContext context, ITokenService tokenService,
-            ICurrentUserService currentUserService, IDateTimeService dateTimeService, 
-            IConfirmationTokenService confirmationTokenService)
+            ICurrentUserService currentUserService, IDateTimeService dateTimeService)
         {
             _context = context;
 
             _tokenService = tokenService;
             _dateTimeService = dateTimeService;
             _currentUserService = currentUserService;
-            _confirmationTokenService = confirmationTokenService;
         }
 
         public async Task<LogInResponseDto> Handle(LogInCommand request, CancellationToken cancellationToken)
@@ -53,7 +50,7 @@ namespace DevToDev.Application.Identity.Commands.LogIn
 
             string accessToken = _tokenService.GenerateAccessToken(user.Id, user.Username, user.Email,
                 user.UserDetails.FirstName, user.UserDetails.LastName, roles.ToArray());
-            string refreshToken = _confirmationTokenService.GenerateToken(60);
+            string refreshToken = _tokenService.GenerateRefreshToken();
 
             var refreshSession = new RefreshSession
             {
@@ -69,7 +66,7 @@ namespace DevToDev.Application.Identity.Commands.LogIn
             await _context.RefreshSessions.AddAsync(refreshSession, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
 
-            _currentUserService.SetCookie("refreshToken", refreshToken, refreshSession.ExpiresIn);
+            _currentUserService.SetRefreshTokenCookie(refreshToken, refreshSession.ExpiresIn);
 
             return new LogInResponseDto
             {

@@ -19,10 +19,9 @@ namespace DevToDev.Infrastructure
 
             services.AddScoped<IAppDbContext>(provider => provider.GetService<AppDbContext>());
 
-            services.AddTransient<IHashService, HashService>();
             services.AddTransient<ITokenService, TokenService>();
             services.AddTransient<IDateTimeService, DateTimeService>();
-            services.AddTransient<IConfirmationTokenService, ConfirmationTokenService>();
+            services.AddTransient<IHashPasswordService, HashPasswordService>();
 
             return services;
         }

@@ -15,9 +15,9 @@ namespace WebUi.Services
 
         public string UserAgent => _httpContextAccessor.HttpContext?.Request.Headers["User-Agent"].ToString();
 
-        public string IpAddress => _httpContextAccessor.HttpContext?.Connection.RemoteIpAddress?.MapToIPv4().ToString();
+        public string IpAddress => GetUserIpAddress();
 
-        public void SetCookie(string key, string value, DateTime expires)
+        public void SetRefreshTokenCookie(string refreshToken, DateTime expires)
         {
             var cookieOptions = new CookieOptions
             {
@@ -25,7 +25,16 @@ namespace WebUi.Services
                 Expires = expires
             };
 
-            _httpContextAccessor.HttpContext?.Response.Cookies.Append(key, value, cookieOptions);
+            _httpContextAccessor.HttpContext?.Response.Cookies.Append("refreshToken", refreshToken, cookieOptions);
+        }
+
+        private string GetUserIpAddress()
+        {
+            if (_httpContextAccessor.HttpContext?.Request.Headers.ContainsKey("X-Forwarded-For") != null
+                && (bool) _httpContextAccessor.HttpContext?.Request.Headers.ContainsKey("X-Forwarded-For"))
+                return _httpContextAccessor.HttpContext?.Request.Headers["X-Forwarded-For"];
+
+            return _httpContextAccessor.HttpContext?.Connection.RemoteIpAddress?.MapToIPv4().ToString();
         }
     }
 }

@@ -20,18 +20,18 @@ namespace DevToDev.Application.Identity.Commands.RegisterUser
     public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, int>
     {
         private readonly IAppDbContext _context;
-        private readonly IHashService _hashService;
+        private readonly ITokenService _tokenService;
         private readonly IDateTimeService _dateTimeService;
-        private readonly IConfirmationTokenService _confirmationTokenService;
+        private readonly IHashPasswordService _hashPasswordService;
 
-        public RegisterUserCommandHandler(IAppDbContext context, IHashService hashService,
-            IDateTimeService dateTimeService, IConfirmationTokenService confirmationTokenService)
+        public RegisterUserCommandHandler(IAppDbContext context, IHashPasswordService hashPasswordService,
+            IDateTimeService dateTimeService, ITokenService tokenService)
         {
             _context = context;
 
-            _hashService = hashService;
             _dateTimeService = dateTimeService;
-            _confirmationTokenService = confirmationTokenService;
+            _tokenService = tokenService;
+            _hashPasswordService = hashPasswordService;
         }
 
         public async Task<int> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
@@ -40,9 +40,9 @@ namespace DevToDev.Application.Identity.Commands.RegisterUser
             {
                 Username = request.Username,
                 Email = request.Email,
-                PasswordHash = _hashService.Hash(request.Password),
+                PasswordHash = _hashPasswordService.HashPassword(request.Password),
                 RegistrationDate = _dateTimeService.UtcNow,
-                EmailVerificationToken = _confirmationTokenService.GenerateToken(255)
+                EmailVerificationToken = _tokenService.GenerateConfirmationToken()
             };
 
             var userDetails = new UserDetails

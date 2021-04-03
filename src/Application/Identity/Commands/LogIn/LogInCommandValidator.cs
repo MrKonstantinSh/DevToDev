@@ -10,14 +10,14 @@ namespace DevToDev.Application.Identity.Commands.LogIn
     public class LogInCommandValidator : AbstractValidator<LogInCommand>
     {
         private readonly IAppDbContext _context;
-        private readonly IHashService _hashService;
+        private readonly IHashPasswordService _hashPasswordService;
 
         private User _user;
 
-        public LogInCommandValidator(IAppDbContext context, IHashService hashService)
+        public LogInCommandValidator(IAppDbContext context, IHashPasswordService hashPasswordService)
         {
             _context = context;
-            _hashService = hashService;
+            _hashPasswordService = hashPasswordService;
 
             RuleFor(c => c.UsernameOrEmail)
                 .MustAsync(IsExistUsernameOrEmail).WithMessage("Username or email is incorrect.");
@@ -40,7 +40,7 @@ namespace DevToDev.Application.Identity.Commands.LogIn
 
         public bool IsPasswordCorrect(string password)
         {
-            return _user != null && _hashService.Verify(password, _user.PasswordHash);
+            return _user != null && _hashPasswordService.VerifyPassword(password, _user.PasswordHash);
         }
     }
 }

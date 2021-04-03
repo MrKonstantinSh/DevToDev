@@ -1,18 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using DevToDev.Application.Common.Interfaces;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 namespace DevToDev.Infrastructure.Services
 {
     public class TokenService : ITokenService
     {
+        private readonly IConfiguration _configuration;
         private readonly IDateTimeService _dateTimeService;
 
-        public TokenService(IDateTimeService dateTimeService)
+        public TokenService(IConfiguration configuration, IDateTimeService dateTimeService)
         {
+            _configuration = configuration;
             _dateTimeService = dateTimeService;
         }
 
@@ -20,7 +24,7 @@ namespace DevToDev.Infrastructure.Services
             string firstName, string lastName, string[] roles)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            byte[] key = Encoding.ASCII.GetBytes("E2CBA4F4-78AE-46DF-8579-EF6D651363C7");
+            byte[] key = Encoding.ASCII.GetBytes(_configuration["AccessToken:SecretKey"]);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -31,9 +35,11 @@ namespace DevToDev.Infrastructure.Services
                     new Claim("email", email),
                     new Claim("firstName", firstName),
                     new Claim("lastName", lastName),
-                    new Claim("roles", string.Join(",", roles)),
+                    new Claim("roles", string.Join(",", roles))
                 }),
-                Expires = _dateTimeService.UtcNow.AddMinutes(15),
+                Issuer = _configuration["AccessToken:Issuer"],
+                IssuedAt = _dateTimeService.UtcNow,
+                Expires = _dateTimeService.UtcNow.AddMinutes(double.Parse(_configuration["AccessToken:ValidityTime"])),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
                     SecurityAlgorithms.HmacSha256Signature)
             };
@@ -41,6 +47,26 @@ namespace DevToDev.Infrastructure.Services
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
             return tokenHandler.WriteToken(token);
+        }
+
+        public string GenerateRefreshToken()
+        {
+            return GenerateRandomString(int.Parse(_configuration["RefreshToken:Length"]));
+        }
+
+        public string GenerateConfirmationToken()
+        {
+            return GenerateRandomString(int.Parse(_configuration["ConfirmationToken:Length"]));
+        }
+
+        private static string GenerateRandomString(int length)
+        {
+            using var rngCryptoServiceProvider = new RNGCryptoServiceProvider();
+
+            byte[] randomBytes = new byte[length / 2];
+            rngCryptoServiceProvider.GetBytes(randomBytes);
+
+            return BitConverter.ToString(randomBytes).Replace("-", string.Empty);
         }
     }
 }

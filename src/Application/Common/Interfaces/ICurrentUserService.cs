@@ -7,6 +7,6 @@ namespace DevToDev.Application.Common.Interfaces
         public string UserAgent { get; }
         public string IpAddress { get; }
 
-        public void SetCookie(string key, string value, DateTime expires);
+        public void SetRefreshTokenCookie(string refreshToken, DateTime expires);
     }
 }
