@@ -16,7 +16,8 @@ namespace WebUi.Filters
             // Register known exception types and handlers.
             _exceptionHandlers = new Dictionary<Type, Action<ExceptionContext>>
             {
-                {typeof(NotFoundException), HandleNotFoundException}
+                {typeof(NotFoundException), HandleNotFoundException},
+                {typeof(ValidationException), HandleValidationException}
             };
         }
 
@@ -37,6 +38,20 @@ namespace WebUi.Filters
             }
 
             HandleUnknownException(context);
+        }
+
+        private static void HandleValidationException(ExceptionContext context)
+        {
+            var exception = context.Exception as ValidationException;
+
+            var details = new ValidationProblemDetails(exception?.Errors)
+            {
+                Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1"
+            };
+
+            context.Result = new BadRequestObjectResult(details);
+
+            context.ExceptionHandled = true;
         }
 
         private static void HandleNotFoundException(ExceptionContext context)

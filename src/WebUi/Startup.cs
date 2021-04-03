@@ -1,5 +1,6 @@
 using DevToDev.Application;
 using DevToDev.Infrastructure;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -27,7 +28,8 @@ namespace WebUi
             services.AddInfrastructure(Configuration);
 
             services.AddControllersWithViews(options =>
-                options.Filters.Add<ApiExceptionFilterAttribute>());
+                options.Filters.Add<ApiExceptionFilterAttribute>())
+                .AddFluentValidation(); ;
 
             // Customise default API behaviour
             services.Configure<ApiBehaviorOptions>(options =>
