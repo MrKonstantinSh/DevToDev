@@ -15,9 +15,6 @@ namespace DevToDev.Infrastructure.Persistence.Configurations.Identity
             builder.Property(ud => ud.LastName)
                 .HasMaxLength(255)
                 .IsRequired();
-
-            builder.Property(ud => ud.DateOfBirth)
-                .IsRequired();
         }
     }
 }

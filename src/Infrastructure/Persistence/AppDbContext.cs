@@ -1,4 +1,6 @@
 ﻿using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 using DevToDev.Application.Common.Interfaces;
 using DevToDev.Domain.Entities.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +18,16 @@ namespace DevToDev.Infrastructure.Persistence
         public DbSet<Role> Roles { get; set; }
         public DbSet<RefreshSession> RefreshSessions { get; set; }
         public DbSet<RevokedToken> RevokedTokens { get; set; }
+
+        public Task<int> SaveChangesAsync()
+        {
+            return SaveChangesAsync(new CancellationToken());
+        }
+
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
+        {
+            return await base.SaveChangesAsync(cancellationToken);
+        }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

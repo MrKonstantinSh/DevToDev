@@ -1,5 +1,6 @@
 ﻿using DevToDev.Application.Common.Interfaces;
 using DevToDev.Infrastructure.Persistence;
+using DevToDev.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +18,10 @@ namespace DevToDev.Infrastructure
                     b => b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)));
 
             services.AddScoped<IAppDbContext>(provider => provider.GetService<AppDbContext>());
+
+            services.AddTransient<IHashService, HashService>();
+            services.AddTransient<IDateTimeService, DateTimeService>();
+            services.AddTransient<IConfirmationTokenService, ConfirmationTokenService>();
 
             return services;
         }

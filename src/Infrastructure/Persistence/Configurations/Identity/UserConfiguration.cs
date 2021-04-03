@@ -24,7 +24,7 @@ namespace DevToDev.Infrastructure.Persistence.Configurations.Identity
                 .IsRequired();
 
             builder.Property(u => u.EmailVerificationToken)
-                .HasMaxLength(255)
+                .HasMaxLength(254)
                 .IsRequired();
         }
     }
