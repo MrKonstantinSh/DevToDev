@@ -39,6 +39,7 @@ namespace DevToDev.Infrastructure.Services
                 }),
                 Issuer = _configuration["AccessToken:Issuer"],
                 IssuedAt = _dateTimeService.UtcNow,
+                Audience = _configuration["AccessToken:Audience"],
                 Expires = _dateTimeService.UtcNow.AddMinutes(double.Parse(_configuration["AccessToken:ValidityTime"])),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
                     SecurityAlgorithms.HmacSha256Signature)

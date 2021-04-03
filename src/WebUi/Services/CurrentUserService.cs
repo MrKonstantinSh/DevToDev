@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Claims;
 using DevToDev.Application.Common.Interfaces;
 using Microsoft.AspNetCore.Http;
 
@@ -16,6 +17,8 @@ namespace WebUi.Services
         public string UserAgent => _httpContextAccessor.HttpContext?.Request.Headers["User-Agent"].ToString();
 
         public string IpAddress => GetUserIpAddress();
+
+        public int UserId => Convert.ToInt32(_httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier));
 
         public void SetRefreshTokenCookie(string refreshToken, DateTime expires)
         {
