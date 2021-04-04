@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using DevToDev.Application.Identity.Commands.LogIn;
+using DevToDev.Application.Identity.Commands.LogOut;
 using DevToDev.Application.Identity.Commands.RefreshToken;
 using DevToDev.Application.Identity.Commands.RegisterUser;
 using DevToDev.Application.Identity.Dtos;
@@ -27,6 +28,15 @@ namespace WebUi.Controllers
         public async Task<ActionResult<AccessTokenDto>> RefreshTokens(RefreshTokensCommand command)
         {
             return await Mediator.Send(command);
+        }
+
+        [Authorize]
+        [HttpPost("logout")]
+        public async Task<ActionResult> LogIn(LogOutCommand command)
+        {
+            await Mediator.Send(command);
+
+            return NoContent();
         }
     }
 }
