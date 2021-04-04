@@ -39,17 +39,23 @@ namespace DevToDev.Application.Identity.Commands.LogIn
             var user = await _context.Users
                            .Include(u => u.UserDetails)
                            .Include(u => u.Roles)
+                           .Include(u => u.RefreshSessions)
                            .SingleOrDefaultAsync(u => u.Username == request.UsernameOrEmail, cancellationToken) ??
                        await _context.Users
                            .Include(u => u.UserDetails)
                            .Include(u => u.Roles)
+                           .Include(u => u.RefreshSessions)
                            .SingleOrDefaultAsync(u => u.Email == request.UsernameOrEmail, cancellationToken);
 
-            var roles = new List<string>();
-            roles.AddRange(user.Roles.Select(role => role.Name));
+            var userRefreshSessions = await _context.RefreshSessions
+                .Where(rs => rs.UserId == user.Id)
+                .ToListAsync(cancellationToken);
 
-            string accessToken = _tokenService.GenerateAccessToken(user.Id, user.Username, user.Email,
-                user.UserDetails.FirstName, user.UserDetails.LastName, roles.ToArray());
+            if (userRefreshSessions.Count >= 5)
+            {
+                _context.RefreshSessions.RemoveRange(userRefreshSessions);
+            }
+
             string refreshToken = _tokenService.GenerateRefreshToken();
 
             var refreshSession = new RefreshSession
@@ -65,6 +71,12 @@ namespace DevToDev.Application.Identity.Commands.LogIn
 
             await _context.RefreshSessions.AddAsync(refreshSession, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
+
+            var roles = new List<string>();
+            roles.AddRange(user.Roles.Select(role => role.Name));
+
+            string accessToken = _tokenService.GenerateAccessToken(user.Id, user.Username, user.Email,
+                user.UserDetails.FirstName, user.UserDetails.LastName, roles.ToArray());
 
             _currentUserService.SetRefreshTokenCookie(refreshToken, refreshSession.ExpiresIn);
 

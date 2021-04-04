@@ -25,6 +25,7 @@ namespace WebUi.Services
             var cookieOptions = new CookieOptions
             {
                 HttpOnly = true,
+                Path = "api/identity",
                 Expires = expires
             };
 
