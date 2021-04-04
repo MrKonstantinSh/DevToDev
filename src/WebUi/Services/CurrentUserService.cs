@@ -18,19 +18,7 @@ namespace WebUi.Services
 
         public string IpAddress => GetUserIpAddress();
 
-        public int UserId => Convert.ToInt32(_httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier));
-
-        public void SetRefreshTokenCookie(string refreshToken, DateTime expires)
-        {
-            var cookieOptions = new CookieOptions
-            {
-                HttpOnly = true,
-                Path = "api/identity",
-                Expires = expires
-            };
-
-            _httpContextAccessor.HttpContext?.Response.Cookies.Append("refreshToken", refreshToken, cookieOptions);
-        }
+        public string UserEmail => _httpContextAccessor.HttpContext?.User.FindFirst(ClaimTypes.Email)?.Value;
 
         private string GetUserIpAddress()
         {

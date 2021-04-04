@@ -29,6 +29,7 @@ namespace WebUi
             services.AddApplication();
             services.AddInfrastructure(Configuration);
 
+            services.AddSingleton<ICookieService, CookieService>();
             services.AddSingleton<ICurrentUserService, CurrentUserService>();
 
             services.AddHttpContextAccessor();

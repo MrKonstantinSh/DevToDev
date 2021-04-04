@@ -17,7 +17,9 @@ namespace WebUi.Filters
             _exceptionHandlers = new Dictionary<Type, Action<ExceptionContext>>
             {
                 {typeof(NotFoundException), HandleNotFoundException},
-                {typeof(ValidationException), HandleValidationException}
+                {typeof(ValidationException), HandleValidationException},
+                { typeof(ForbiddenAccessException), HandleForbiddenAccessException },
+                { typeof(UnauthorizedAccessException), HandleUnauthorizedAccessException }
             };
         }
 
@@ -66,6 +68,40 @@ namespace WebUi.Filters
             };
 
             context.Result = new NotFoundObjectResult(details);
+
+            context.ExceptionHandled = true;
+        }
+
+        private static void HandleUnauthorizedAccessException(ExceptionContext context)
+        {
+            var details = new ProblemDetails
+            {
+                Status = StatusCodes.Status401Unauthorized,
+                Title = "Unauthorized",
+                Type = "https://tools.ietf.org/html/rfc7235#section-3.1"
+            };
+
+            context.Result = new ObjectResult(details)
+            {
+                StatusCode = StatusCodes.Status401Unauthorized
+            };
+
+            context.ExceptionHandled = true;
+        }
+
+        private static void HandleForbiddenAccessException(ExceptionContext context)
+        {
+            var details = new ProblemDetails
+            {
+                Status = StatusCodes.Status403Forbidden,
+                Title = "Forbidden",
+                Type = "https://tools.ietf.org/html/rfc7231#section-6.5.3"
+            };
+
+            context.Result = new ObjectResult(details)
+            {
+                StatusCode = StatusCodes.Status403Forbidden
+            };
 
             context.ExceptionHandled = true;
         }

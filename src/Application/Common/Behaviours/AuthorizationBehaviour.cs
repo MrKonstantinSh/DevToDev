@@ -30,7 +30,10 @@ namespace DevToDev.Application.Common.Behaviours
             if (attributes.Any())
             {
                 // Must be authenticated user
-                if (_currentUserService.UserId == 0) throw new UnauthorizedAccessException();
+                if (_currentUserService.UserEmail == null)
+                {
+                    throw new UnauthorizedAccessException();
+                }
 
                 // Role-based authorization
                 var authorizeAttributesWithRoles = attributes.Where(a => !string.IsNullOrWhiteSpace(a.Roles));
@@ -45,7 +48,7 @@ namespace DevToDev.Application.Common.Behaviours
                         foreach (string role in roles)
                         {
                             bool isInRole = await _identityService
-                                .UserIsInRoleAsync(_currentUserService.UserId, role.Trim());
+                                .UserIsInRoleAsync(_currentUserService.UserEmail, role.Trim());
 
                             if (isInRole)
                             {
