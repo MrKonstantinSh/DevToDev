@@ -84,7 +84,11 @@ namespace WebUi
 
                 spa.Options.SourcePath = "ClientApp";
 
-                if (env.IsDevelopment()) spa.UseAngularCliServer("start");
+                if (env.IsDevelopment())
+                {
+                    // spa.UseAngularCliServer(npmScript: "start");
+                    spa.UseProxyToSpaDevelopmentServer(Configuration["SpaBaseUrl"] ?? "http://localhost:4200");
+                }
             });
         }
     }
