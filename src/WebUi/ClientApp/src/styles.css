@@ -11,9 +11,48 @@
 html,
 body {
   display: block;
-  min-width: 300px;
+  min-width: 330px;
   margin: 0;
   font-size: 14px;
   font-family: Roboto;
   background-color: #ffffff;
+}
+
+a {
+  outline: none;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.row {
+  max-width: 1192px;
+  width: 100%;
+  margin: 0 64px;
+}
+
+@media (min-width: 1080px) {
+  .row {
+    margin: 0 64px;
+  }
+}
+
+@media (min-width: 728px) and (max-width: 903.98px) {
+  .row {
+    margin: 0 48px;
+  }
+}
+
+@media (min-width: 552px) and (max-width: 727.98px) {
+  .row {
+    margin: 0 24px;
+  }
+}
+
+@media (max-width: 551.98px) {
+  .row {
+    margin: 0 24px;
+  }
 }

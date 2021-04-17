@@ -1,33 +1,40 @@
-<section class="sign-up-container">
-  <h1 class="sign-up-logo">DevToDev</h1>
-  <div class="sign-up-form">
-    <h2 class="sign-up-form__title">Create an Account</h2>
-    <div class="form">
-      <div class="form-item">
-        <label class="form-item__label">Email Address</label>
-        <input type="email" class="form-item__input" />
-      </div>
-      <div class="form-item">
-        <label class="form-item__label">Password</label>
-        <input type="password" class="form-item__input" />
-      </div>
-      <div class="form-item">
-        <label class="form-item__label">Password</label>
-        <input type="password" class="form-item__input" />
-      </div>
-      <button class="form__button">Sign Up</button>
-    </div>
-    <div class="form-footer">
-      <label class="form-footer__label">Already a User?</label>
-      <a
-        class="form-footer__link"
-        [routerLink]="['/sign-in']"
-        routerLinkActive="active"
-        >Sign In</a
+<div class="container">
+  <div class="row">
+    <section class="sign-up-menu">
+      <a [routerLink]="['/']" routerLinkActive="active"
+        ><h1 class="sign-up-logo">DevToDev</h1></a
       >
-    </div>
+      <div class="sign-up-menu__item">
+        <label class="sign-up-menu__label">Already a User?</label>
+        <button
+          class="sign-up-menu__button"
+          [routerLink]="['/sign-in']"
+          routerLinkActive="active"
+        >
+          Sign In
+        </button>
+      </div>
+    </section>
+    <main class="sign-up-form">
+      <h2 class="sign-up-form__title">Create an Account</h2>
+      <div class="form">
+        <div class="form-item">
+          <label class="form-item__label">Email Address</label>
+          <input type="email" class="form-item__input" />
+        </div>
+        <div class="form-item">
+          <label class="form-item__label">Password</label>
+          <input type="password" class="form-item__input" />
+        </div>
+        <div class="form-item">
+          <label class="form-item__label">Password</label>
+          <input type="password" class="form-item__input" />
+        </div>
+        <button class="form__button">Sign Up</button>
+      </div>
+    </main>
+    <section class="sign-up-footer">
+      <p class="sign-up-footer__text">© 2021 DevToDev All Rights Reserved</p>
+    </section>
   </div>
-</section>
-<footer class="sign-up-footer">
-  <p class="sign-up-footer__text">© 2021 DevToDev All Rights Reserved</p>
-</footer>
+</div>

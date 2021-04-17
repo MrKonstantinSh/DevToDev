@@ -1,5 +1,4 @@
 .sign-in-menu {
-  padding: 0 10rem;
   height: 80px;
 }
 
@@ -44,16 +43,15 @@
 }
 
 .sign-in-form {
-  width: 20%;
+  width: 300px;
   height: auto;
-  margin: 7rem auto 0 auto;
-  padding: 1rem 5rem;
+  margin: 5rem auto 2rem auto;
 }
 
 .sign-in-form__title {
   margin: 0;
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-family: Roboto;
   color: #333c48;
 }
@@ -111,133 +109,46 @@
   box-shadow: 0 0 0 0.15rem rgb(50 186 48 / 30%);
 }
 
-.form-footer {
-  display: none;
-  margin: 1.5rem auto;
-  text-align: center;
-}
-
-.form-footer__label {
-  font-size: 1.1rem;
-  font-family: Roboto;
-  color: #333c48;
-}
-
-.form-footer__link {
-  margin-left: 0.5rem;
-  font-size: 1.1rem;
-  font-family: Roboto;
-  outline: none;
-  color: #255ce9;
-  cursor: pointer;
-}
-
-.form-footer__link:hover {
-  color: #0239c6;
-}
-
-.sign-in-footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 80px;
-  border-top: 1px solid #e2e4e8;
-}
-
 .sign-in-footer__text {
-  margin: 0;
-  width: 90%;
-  margin: 0 auto;
-  padding: 31.5px 0;
   text-align: center;
   color: #333c48;
-}
-
-@media (min-width: 1025px) and (max-width: 1280px) {
-  .sign-in-form {
-    width: 30%;
-  }
-
-  .sign-in-menu {
-    padding: 0 5rem;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1024px) {
-  .sign-in-form {
-    width: 40%;
-  }
-
-  .sign-in-menu {
-    padding: 0 4rem;
-  }
-}
-
-@media (min-width: 481px) and (max-width: 767px) {
-  .sign-in-form {
-    width: 60%;
-  }
-
-  .sign-in-menu {
-    padding: 0 1rem;
-  }
 }
 
 @media (min-width: 481px) and (max-width: 600px) {
-  .sign-in-menu {
-    padding: 0;
-  }
-
-  .sign-in-menu__item {
-    display: none;
-  }
-
-  .sign-in-logo {
-    width: 100%;
-    text-align: center;
-  }
-
   .sign-in-form {
-    width: 90%;
-    margin: 3rem auto 0 auto;
-    padding: 0;
-  }
-
-  .sign-in-form__title {
-    font-size: 2rem;
-  }
-
-  .form-footer {
-    display: block;
-  }
-}
-
-@media (max-width: 480px) {
-  .sign-in-menu {
-    padding: 0;
-  }
-
-  .sign-in-form {
-    width: 90%;
-    margin: 1rem auto 0 auto;
-    padding: 0;
+    margin: 2rem auto;
   }
 
   .sign-in-form__title {
     font-size: 1.5rem;
   }
+}
 
-  .sign-in-menu__item {
+@media (min-width: 373px) and (max-width: 599px) {
+  .sign-in-menu__label {
     display: none;
   }
 
-  .sign-in-logo {
-    width: 100%;
-    text-align: center;
+  .sign-in-form {
+    margin: 2rem auto;
   }
 
-  .form-footer {
-    display: block;
+  .sign-in-form__title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 372px) {
+  .sign-in-menu__label {
+    display: none;
+  }
+
+  .sign-in-form {
+    width: 100%;
+    margin: 2rem auto;
+  }
+
+  .sign-in-form__title {
+    font-size: 1.5rem;
   }
 }
