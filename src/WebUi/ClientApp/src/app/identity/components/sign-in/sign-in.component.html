@@ -1,0 +1,39 @@
+<header class="sign-in-menu">
+  <h1 class="sign-in-logo">DevToDev</h1>
+  <div class="sign-in-menu__item">
+    <label class="sign-in-menu__label">New to DevToDev?</label>
+    <button
+      class="sign-in-menu__button"
+      [routerLink]="['/sign-up']"
+      routerLinkActive="active"
+    >
+      Create an account
+    </button>
+  </div>
+</header>
+<section class="sign-in-form">
+  <h2 class="sign-in-form__title">Sign In</h2>
+  <div class="form">
+    <div class="form-item">
+      <label class="form-item__label">Email Address</label>
+      <input type="email" class="form-item__input" />
+    </div>
+    <div class="form-item">
+      <label class="form-item__label">Password</label>
+      <input type="password" class="form-item__input" />
+    </div>
+    <button class="form__button">Sign In</button>
+  </div>
+  <div class="form-footer">
+    <label class="form-footer__label">New to DevToDev?</label>
+    <a
+      class="form-footer__link"
+      [routerLink]="['/sign-up']"
+      routerLinkActive="active"
+      >Sign Up</a
+    >
+  </div>
+</section>
+<footer class="sign-in-footer">
+  <p class="sign-in-footer__text">© 2021 DevToDev All Rights Reserved</p>
+</footer>
