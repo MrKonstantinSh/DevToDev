@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using DevToDev.Application.Common.Interfaces;
 using DevToDev.Domain.Entities.Identity;
@@ -9,9 +10,6 @@ namespace DevToDev.Application.Identity.Commands.RegisterUser
 {
     public class RegisterUserCommand : IRequest<int>
     {
-        public string Username { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public string RePassword { get; set; }
@@ -38,7 +36,7 @@ namespace DevToDev.Application.Identity.Commands.RegisterUser
         {
             var user = new User
             {
-                Username = request.Username,
+                Username = request.Email.Split('@').First(),
                 Email = request.Email,
                 PasswordHash = _hashPasswordService.HashPassword(request.Password),
                 RegistrationDate = _dateTimeService.UtcNow,
@@ -47,8 +45,6 @@ namespace DevToDev.Application.Identity.Commands.RegisterUser
 
             var userDetails = new UserDetails
             {
-                FirstName = request.FirstName,
-                LastName = request.LastName,
                 User = user
             };
 

@@ -9,12 +9,10 @@ namespace DevToDev.Infrastructure.Persistence.Configurations.Identity
         public void Configure(EntityTypeBuilder<UserDetails> builder)
         {
             builder.Property(ud => ud.FirstName)
-                .HasMaxLength(255)
-                .IsRequired();
+                .HasMaxLength(255);
 
             builder.Property(ud => ud.LastName)
-                .HasMaxLength(255)
-                .IsRequired();
+                .HasMaxLength(255);
         }
     }
 }
