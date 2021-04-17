@@ -12,6 +12,7 @@ html,
 body {
   display: block;
   min-width: 300px;
+  margin: 0;
   font-size: 14px;
   font-family: Roboto;
   background-color: #ffffff;

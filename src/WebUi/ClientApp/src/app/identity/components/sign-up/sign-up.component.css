@@ -66,20 +66,16 @@
   font-family: Roboto;
   color: #ffffff;
   background-color: #2db52b;
+  outline: none;
   cursor: pointer;
 }
 
 .form__button:hover {
-  outline: none;
   background-color: #28b026;
 }
 
 .form__button:focus {
   box-shadow: 0 0 0 0.15rem rgb(50 186 48 / 30%);
-}
-
-.form__button:focus-visible {
-  outline: none;
 }
 
 .form-footer {
@@ -120,6 +116,7 @@
   margin: 0 auto;
   padding: 31.5px 0;
   text-align: center;
+  color: #333c48;
 }
 
 @media (min-width: 1025px) and (max-width: 1280px) {
