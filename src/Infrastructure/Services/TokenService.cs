@@ -23,6 +23,9 @@ namespace DevToDev.Infrastructure.Services
         public string GenerateAccessToken(int id, string username, string email,
             string firstName, string lastName, string[] roles)
         {
+            firstName ??= "";
+            lastName ??= "";
+
             var tokenHandler = new JwtSecurityTokenHandler();
             byte[] key = Encoding.ASCII.GetBytes(_configuration["AccessToken:SecretKey"]);
 
