@@ -1,6 +1,15 @@
+import { ThrowStmt } from "@angular/compiler";
 import { Component, OnInit } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import {
+  AsyncValidatorFn,
+  FormControl,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from "@angular/forms";
 import { Router } from "@angular/router";
+import { of, timer } from "rxjs";
+import { map, switchMap } from "rxjs/operators";
 import { SignUpDto } from "../../dtos/signUpDto";
 import { IdentityService } from "../../services/identity.service";
 
@@ -19,6 +28,10 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit(): void {
     this.createSignUpForm();
+
+    this.signUpForm.controls.password.valueChanges.subscribe(() => {
+      this.signUpForm.controls.rePassword.updateValueAndValidity();
+    });
   }
 
   onSubmit() {
@@ -37,14 +50,52 @@ export class SignUpComponent implements OnInit {
     );
   }
 
+  validateEmailNotTaken(): AsyncValidatorFn {
+    return (control: FormControl) => {
+      return timer(500).pipe(
+        switchMap(() => {
+          if (!control.value) {
+            return of(null);
+          }
+          return this.identityService.checkEmailAddress(control.value).pipe(
+            map((response: any) => {
+              return response.isEmailAlreadyTaken
+                ? { isEmailExists: true }
+                : null;
+            })
+          );
+        })
+      );
+    };
+  }
+
+  validatePasswordMatch(): ValidatorFn {
+    return (control: FormControl) => {
+      if (!control || !control.parent) {
+        return null;
+      }
+
+      return control.parent.get("password").value !== control.value
+        ? { isPasswordMismatch: true }
+        : null;
+    };
+  }
+
   private createSignUpForm() {
     this.signUpForm = new FormGroup({
-      email: new FormControl("", [
-        Validators.required,
-        Validators.pattern("[a-z0-9._%-]+@[a-z0-9._%-]+\\.[a-z]{2,4}"),
-      ]),
+      email: new FormControl(
+        "",
+        [
+          Validators.required,
+          Validators.pattern("[a-z0-9._%-]+@[a-z0-9._%-]+\\.[a-z]{2,4}"),
+        ],
+        [this.validateEmailNotTaken()]
+      ),
       password: new FormControl("", Validators.required),
-      rePassword: new FormControl("", Validators.required),
+      rePassword: new FormControl("", [
+        Validators.required,
+        this.validatePasswordMatch(),
+      ]),
     });
   }
 }

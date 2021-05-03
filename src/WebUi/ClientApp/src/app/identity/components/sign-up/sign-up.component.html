@@ -58,6 +58,19 @@
             ></i
             >Please enter a valid email address.</span
           >
+          <span
+            class="validation-error__text"
+            *ngIf="
+              signUpForm.get('email').invalid &&
+              signUpForm.get('email').touched &&
+              signUpForm.get('email').errors['isEmailExists']
+            "
+            ><i
+              class="fa fa-exclamation-triangle validation-error__icon"
+              aria-hidden="true"
+            ></i
+            >This email is already taken.</span
+          >
         </div>
         <div class="form-item">
           <label class="form-item__label">Password</label>
@@ -89,7 +102,7 @@
           >
         </div>
         <div class="form-item">
-          <label class="form-item__label">Password</label>
+          <label class="form-item__label">Confirm password</label>
           <input
             type="password"
             class="form-item__input"
@@ -114,10 +127,25 @@
               class="fa fa-exclamation-triangle validation-error__icon"
               aria-hidden="true"
             ></i
-            >Password is required.</span
+            >Confirm password is required.</span
+          >
+          <span
+            class="validation-error__text"
+            *ngIf="
+              signUpForm.get('rePassword').invalid &&
+              signUpForm.get('rePassword').touched &&
+              signUpForm.get('rePassword').errors['isPasswordMismatch']
+            "
+            ><i
+              class="fa fa-exclamation-triangle validation-error__icon"
+              aria-hidden="true"
+            ></i
+            >Password mismatch.</span
           >
         </div>
-        <button class="form__button">Sign Up</button>
+        <button [disabled]="signUpForm.invalid" class="form__button">
+          Sign Up
+        </button>
       </form>
     </main>
     <section class="sign-up-footer">

@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { BehaviorSubject, Observable, of, Subscription } from "rxjs";
+import { BehaviorSubject, Observable, of } from "rxjs";
 import { catchError, mapTo, tap } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 import { User } from "../../shared/models/user";
@@ -55,6 +55,19 @@ export class IdentityService {
           console.log(response);
         }),
         mapTo(true),
+        catchError(() => {
+          return of(false);
+        })
+      );
+  }
+
+  checkEmailAddress(email: string): Observable<boolean> {
+    return this.httpClient
+      .get(this.baseUrl + `/identity/check-email?email=${email}`)
+      .pipe(
+        tap((response: any) => {
+          return of(response.isEmailAlreadyTaken);
+        }),
         catchError(() => {
           return of(false);
         })
