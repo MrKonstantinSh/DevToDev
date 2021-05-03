@@ -33,6 +33,23 @@ a {
   margin: 0 64px;
 }
 
+.validation-error {
+  margin-top: 0.2rem;
+}
+
+.validation-error__text {
+  color: #ef9400;
+}
+
+.validation-error__icon {
+  margin-right: 0.3rem;
+}
+
+.validation-error__input {
+  border-color: #ef9400 !important;
+  background-color: #fef7ea;
+}
+
 @media (min-width: 1080px) {
   .row {
     margin: 0 64px;

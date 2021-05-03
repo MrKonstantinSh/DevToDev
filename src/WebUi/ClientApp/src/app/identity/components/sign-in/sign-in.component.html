@@ -23,18 +23,62 @@
           <input
             type="email"
             class="form-item__input"
+            [ngClass]="
+              signInForm.get('usernameOrEmail').invalid &&
+              signInForm.get('usernameOrEmail').touched
+                ? 'validation-error__input'
+                : ''
+            "
             formControlName="usernameOrEmail"
           />
+          <div class="validation-error">
+            <span
+              class="validation-error__text"
+              *ngIf="
+                signInForm.get('usernameOrEmail').invalid &&
+                signInForm.get('usernameOrEmail').touched &&
+                signInForm.get('usernameOrEmail').errors['required']
+              "
+              ><i
+                class="fa fa-exclamation-triangle validation-error__icon"
+                aria-hidden="true"
+              ></i
+              >Email address is required.</span
+            >
+          </div>
         </div>
         <div class="form-item">
           <label class="form-item__label">Password</label>
           <input
             type="password"
             class="form-item__input"
+            [ngClass]="
+              signInForm.get('password').invalid &&
+              signInForm.get('password').touched
+                ? 'validation-error__input'
+                : ''
+            "
             formControlName="password"
           />
+          <div class="validation-error">
+            <span
+              class="validation-error__text"
+              *ngIf="
+                signInForm.get('password').invalid &&
+                signInForm.get('password').touched &&
+                signInForm.get('password').errors['required']
+              "
+              ><i
+                class="fa fa-exclamation-triangle validation-error__icon"
+                aria-hidden="true"
+              ></i
+              >Password is required.</span
+            >
+          </div>
         </div>
-        <button class="form__button">Sign In</button>
+        <button [disabled]="signInForm.invalid" class="form__button">
+          Sign In
+        </button>
       </form>
     </main>
     <section class="sign-in-footer">
