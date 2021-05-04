@@ -54,6 +54,19 @@ a {
   box-shadow: 0 0 0 0.1rem #fcf1de !important;
 }
 
+.error-box {
+  width: 100%;
+  margin-top: 1rem;
+  border: 1px solid #fba298;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #fdc4be;
+}
+
+.error-box__message {
+  color: #333c48;
+}
+
 @media (min-width: 1080px) {
   .row {
     margin: 0 64px;

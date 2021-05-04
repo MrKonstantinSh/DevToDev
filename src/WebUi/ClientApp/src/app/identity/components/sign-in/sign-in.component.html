@@ -17,6 +17,9 @@
     </section>
     <main class="sign-in-form">
       <h2 class="sign-in-form__title">Sign In</h2>
+      <div *ngIf="signInError" class="error-box">
+        <p class="error-box__message">{{ signInError }}</p>
+      </div>
       <form class="form" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
         <div class="form-item">
           <label class="form-item__label">Email or Username</label>

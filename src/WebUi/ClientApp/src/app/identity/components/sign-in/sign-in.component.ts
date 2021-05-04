@@ -10,6 +10,7 @@ import { SignInDto } from "../../dtos/signInDto";
   styleUrls: ["./sign-in.component.css"],
 })
 export class SignInComponent implements OnInit {
+  signInError: string;
   signInForm: FormGroup;
 
   constructor(private identityService: IdentityService) {}
@@ -29,7 +30,7 @@ export class SignInComponent implements OnInit {
         if (res) {
           console.log("User logged in");
         } else {
-          console.log("ERROR");
+          this.signInError = "Login or password is entered incorrectly.";
         }
       },
       (error) => {
