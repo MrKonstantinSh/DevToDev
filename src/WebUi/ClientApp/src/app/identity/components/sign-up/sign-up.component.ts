@@ -1,4 +1,3 @@
-import { ThrowStmt } from "@angular/compiler";
 import { Component, OnInit } from "@angular/core";
 import {
   AsyncValidatorFn,
@@ -45,7 +44,7 @@ export class SignUpComponent implements OnInit {
         this.router.navigateByUrl("/sign-in");
       },
       (error) => {
-        console.log(error);
+        // TODO: add error handler
       }
     );
   }

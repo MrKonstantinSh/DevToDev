@@ -50,6 +50,10 @@ a {
   background-color: #fef7ea;
 }
 
+.validation-error__input:focus {
+  box-shadow: 0 0 0 0.1rem #fcf1de !important;
+}
+
 @media (min-width: 1080px) {
   .row {
     margin: 0 64px;

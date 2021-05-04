@@ -25,11 +25,15 @@ export class SignInComponent implements OnInit {
     signInDto.fingerprint = getBrowserFingerprint().toString();
 
     this.identityService.signIn(signInDto).subscribe(
-      () => {
-        console.log("User logged in");
+      (res) => {
+        if (res) {
+          console.log("User logged in");
+        } else {
+          console.log("ERROR");
+        }
       },
       (error) => {
-        console.log(error);
+        // TODO: error handler
       }
     );
   }
