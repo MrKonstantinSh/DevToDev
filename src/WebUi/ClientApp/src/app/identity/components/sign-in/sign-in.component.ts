@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import getBrowserFingerprint from "get-browser-fingerprint";
 import { IdentityService } from "../../services/identity.service";
 import { SignInDto } from "../../dtos/signInDto";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-sign-in",
@@ -13,7 +14,10 @@ export class SignInComponent implements OnInit {
   signInError: string;
   signInForm: FormGroup;
 
-  constructor(private identityService: IdentityService) {}
+  constructor(
+    private identityService: IdentityService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.createSignInForm();
@@ -28,7 +32,7 @@ export class SignInComponent implements OnInit {
     this.identityService.signIn(signInDto).subscribe(
       (res) => {
         if (res) {
-          console.log("User logged in");
+          this.router.navigateByUrl("/search");
         } else {
           this.signInError = "Login or password is entered incorrectly.";
         }

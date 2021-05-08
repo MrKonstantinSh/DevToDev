@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { BehaviorSubject, Observable, of } from "rxjs";
-import { catchError, mapTo, tap } from "rxjs/operators";
+import { catchError, mapTo, map, tap } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 import { User } from "../../shared/models/user";
 import { SignInDto } from "../dtos/signInDto";
@@ -17,6 +17,20 @@ export class IdentityService {
   currentUser$ = this.currentUserSource.asObservable();
 
   constructor(private httpClient: HttpClient, private router: Router) {}
+
+  getCurrentUser() {
+    return this.currentUserSource.value;
+  }
+
+  loadCurrentUser(): Observable<void> {
+    return this.httpClient.get(this.baseUrl + "/identity/user-info").pipe(
+      map((user: User) => {
+        if (user) {
+          this.currentUserSource.next(user);
+        }
+      })
+    );
+  }
 
   signUp(values: SignUpDto): Observable<boolean> {
     return this.httpClient
@@ -75,7 +89,7 @@ export class IdentityService {
   }
 
   logOut(): Observable<boolean> {
-    return this.httpClient.post(this.baseUrl + "/identity/logout", null).pipe(
+    return this.httpClient.post(this.baseUrl + "/identity/logout", {}).pipe(
       tap(() => {
         localStorage.removeItem("accessToken");
         this.currentUserSource.next(null);

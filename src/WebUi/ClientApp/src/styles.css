@@ -10,6 +10,7 @@
 
 html,
 body {
+  height: 100%;
   display: block;
   min-width: 330px;
   margin: 0;
@@ -67,6 +68,14 @@ a {
   color: #333c48;
 }
 
+.separator {
+  margin: 0.5rem 0 0 0;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-color: #e1e4e8;
+}
+
 @media (min-width: 1080px) {
   .row {
     margin: 0 64px;
@@ -89,4 +98,27 @@ a {
   .row {
     margin: 0 24px;
   }
+}
+
+/* Angular materials styles */
+
+.mat-elevation-z4 {
+  box-shadow: 0 8px 24px rgba(149, 157, 165, 0.2);
+  border: 1px solid #e1e4e8;
+}
+
+.mat-menu-panel {
+  width: 180px;
+}
+
+.mat-menu-content,
+.mat-menu-content:not(:empty) {
+  padding: 1rem 0 !important;
+  background-color: #ffffff;
+}
+
+.mat-menu-item {
+  padding: 0 1rem !important;
+  line-height: 2.5rem !important;
+  height: 2.5rem !important;
 }

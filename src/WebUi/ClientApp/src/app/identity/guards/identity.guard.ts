@@ -13,7 +13,7 @@ export class IdentityGuard implements CanActivate {
 
   canActivate() {
     if (this.identityService.isLoggedIn()) {
-      this.router.navigate(["/"]);
+      this.router.navigateByUrl("/search");
     }
 
     return !this.identityService.isLoggedIn();

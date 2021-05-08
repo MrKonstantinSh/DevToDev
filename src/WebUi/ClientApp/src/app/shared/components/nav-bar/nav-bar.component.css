@@ -1,0 +1,47 @@
+.nav-bar {
+  height: 80px;
+}
+
+.logo {
+  float: left;
+  margin: 24px 0;
+  font-size: 2rem;
+  font-family: Monoton;
+  font-weight: 100;
+  color: #333c48;
+}
+
+.user-info {
+  float: right;
+  margin: 27px 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333c48;
+}
+
+.user-info__button {
+  border: none;
+  color: #333c48;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+}
+
+.username-info-text {
+  padding: 1rem;
+  color: #333c48;
+}
+
+.username-info-text::after {
+  content: "\a";
+  white-space: pre;
+}
+
+.username {
+  padding: 1rem;
+  color: #333c48;
+}
+
+.menu-item__text {
+  font-size: 1.1rem;
+}
