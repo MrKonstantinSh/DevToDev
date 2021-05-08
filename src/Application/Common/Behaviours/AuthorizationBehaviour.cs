@@ -30,7 +30,7 @@ namespace DevToDev.Application.Common.Behaviours
             if (attributes.Any())
             {
                 // Must be authenticated user
-                if (_currentUserService.UserEmail == null)
+                if (_currentUserService.Email == null)
                 {
                     throw new UnauthorizedAccessException();
                 }
@@ -48,7 +48,7 @@ namespace DevToDev.Application.Common.Behaviours
                         foreach (string role in roles)
                         {
                             bool isInRole = await _identityService
-                                .UserIsInRoleAsync(_currentUserService.UserEmail, role.Trim());
+                                .UserIsInRoleAsync(_currentUserService.Email, role.Trim());
 
                             if (isInRole)
                             {

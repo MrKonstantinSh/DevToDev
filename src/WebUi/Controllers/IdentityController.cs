@@ -5,6 +5,7 @@ using DevToDev.Application.Identity.Commands.RefreshToken;
 using DevToDev.Application.Identity.Commands.RegisterUser;
 using DevToDev.Application.Identity.Dtos;
 using DevToDev.Application.Identity.Queries.CheckEmailAddress;
+using DevToDev.Application.Identity.Queries.GetCurrentUserInfo;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +13,13 @@ namespace WebUi.Controllers
 {
     public class IdentityController : ApiControllerBase
     {
+        [Authorize]
+        [HttpGet("user-info")]
+        public async Task<ActionResult<UserDto>> GetCurrentUserInfo([FromQuery] GetCurrentUserInfoQuery query)
+        {
+            return await Mediator.Send(query);
+        }
+
         [HttpGet("check-email")]
         public async Task<ActionResult<EmailStatusDto>> CheckEmailAddress([FromQuery] CheckEmailAddressQuery query)
         {
