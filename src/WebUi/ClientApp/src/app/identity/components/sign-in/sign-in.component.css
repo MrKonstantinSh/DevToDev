@@ -1,0 +1,159 @@
+.sign-in-menu {
+  height: 80px;
+}
+
+.sign-in-logo {
+  float: left;
+  margin: 18.5px 0;
+  font-size: 2rem;
+  font-family: Monoton;
+  font-weight: 100;
+  color: #333c48;
+}
+
+.sign-in-menu__item {
+  float: right;
+  margin: 19.5px 0;
+}
+
+.sign-in-menu__label {
+  margin-right: 1rem;
+  font-size: 1.1rem;
+  color: #333c48;
+}
+
+.sign-in-menu__button {
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e4e8;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background-color: #ffffff;
+  color: #333c48;
+  cursor: pointer;
+  outline: none;
+}
+
+.sign-in-menu__button:hover {
+  border-color: #cbcdd0;
+}
+
+.sign-in-menu__button:focus {
+  box-shadow: 0 0 0 0.15rem rgb(0 0 0 / 3%);
+}
+
+.sign-in-form {
+  width: 300px;
+  height: auto;
+  margin: 5rem auto 2rem auto;
+}
+
+.sign-in-form__title {
+  margin: 0;
+  text-align: center;
+  font-size: 2rem;
+  font-family: Roboto;
+  color: #333c48;
+}
+
+.form {
+  margin: 3rem 0 0 0;
+}
+
+.form-item {
+  margin: 1rem 0 0 0;
+}
+
+.form-item__label {
+  font-size: 1.1rem;
+  font-family: Roboto;
+  color: #333c48;
+}
+
+.form-item__input {
+  width: calc(100% - (2 * 0.75rem + 2px));
+  margin-top: 0.25rem;
+  padding: 0.75rem;
+  border: 1px solid #dbdad7;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-family: Roboto;
+  color: #333c48;
+}
+
+.form-item__input:focus {
+  border-color: #255ce9;
+  outline: 0;
+  box-shadow: 0 0 0 0.1rem #dce6fc;
+}
+
+.form__button {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-family: Roboto;
+  color: #ffffff;
+  background-color: #2db52b;
+  outline: none;
+  cursor: pointer;
+}
+
+.form__button:hover {
+  background-color: #28b026;
+}
+
+.form__button:focus {
+  box-shadow: 0 0 0 0.15rem rgb(50 186 48 / 30%);
+}
+
+.form__button:disabled {
+  cursor: auto;
+  background-color: #93d792;
+}
+
+.sign-in-footer__text {
+  text-align: center;
+  color: #333c48;
+}
+
+@media (min-width: 481px) and (max-width: 600px) {
+  .sign-in-form {
+    margin: 2rem auto;
+  }
+
+  .sign-in-form__title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 373px) and (max-width: 599px) {
+  .sign-in-menu__label {
+    display: none;
+  }
+
+  .sign-in-form {
+    margin: 2rem auto;
+  }
+
+  .sign-in-form__title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 372px) {
+  .sign-in-menu__label {
+    display: none;
+  }
+
+  .sign-in-form {
+    width: 100%;
+    margin: 2rem auto;
+  }
+
+  .sign-in-form__title {
+    font-size: 1.5rem;
+  }
+}

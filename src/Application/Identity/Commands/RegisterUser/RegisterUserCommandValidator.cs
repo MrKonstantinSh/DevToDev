@@ -14,11 +14,6 @@ namespace DevToDev.Application.Identity.Commands.RegisterUser
         {
             _context = context;
 
-            RuleFor(c => c.Username)
-                .NotEmpty().WithMessage("Username is required.")
-                .MaximumLength(25).WithMessage("Username must not exceed 25 characters.")
-                .MustAsync(IsUniqueUsername).WithMessage("The specified username already taken.");
-
             RuleFor(c => c.Email)
                 .NotEmpty().WithMessage("Email is required.")
                 .EmailAddress().WithMessage("Email must be correct.")
@@ -31,22 +26,6 @@ namespace DevToDev.Application.Identity.Commands.RegisterUser
 
             RuleFor(c => c.RePassword)
                 .NotEmpty().WithMessage("RePassword is required.");
-
-            RuleFor(c => c.FirstName)
-                .NotEmpty().WithMessage("First name is required.")
-                .MinimumLength(2).WithMessage("First name must be at least 2 characters long.")
-                .MaximumLength(255).WithMessage("First name must not exceed 255 characters.");
-
-            RuleFor(c => c.LastName)
-                .NotEmpty().WithMessage("Last name is required.")
-                .MinimumLength(2).WithMessage("Last name must be at least 2 characters long.")
-                .MaximumLength(255).WithMessage("Last name must not exceed 255 characters.");
-        }
-
-        public async Task<bool> IsUniqueUsername(string username, CancellationToken cancellationToken)
-        {
-            return await _context.Users
-                .AllAsync(u => u.Username != username, cancellationToken: cancellationToken);
         }
 
         public async Task<bool> IsUniqueEmail(string email, CancellationToken cancellationToken)

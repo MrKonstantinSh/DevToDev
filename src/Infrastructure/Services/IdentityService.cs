@@ -73,6 +73,13 @@ namespace DevToDev.Infrastructure.Services
                 .SingleOrDefaultAsync(rs => rs.RefreshToken == refreshToken);
         }
 
+        public async Task<bool> IsEmailAlreadyTaken(string email)
+        {
+            var user = await _context.Users.SingleOrDefaultAsync(u => u.Email == email);
+
+            return user != null;
+        }
+
         public RefreshSession CreateRefreshSessionForUser(User user, string fingerprint)
         {
             string refreshToken = _tokenService.GenerateRefreshToken();

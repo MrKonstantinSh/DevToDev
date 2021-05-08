@@ -16,6 +16,8 @@ namespace DevToDev.Application.Common.Interfaces
 
         public Task<RefreshSession> GetUserRefreshSessionWithRelatedEntities(string refreshToken);
 
+        public Task<bool> IsEmailAlreadyTaken(string email);
+
         public RefreshSession CreateRefreshSessionForUser(User user, string fingerprint);
 
         public string CreateAccessTokenForUser(User userWithRelatedEntities);

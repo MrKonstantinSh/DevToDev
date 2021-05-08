@@ -1,16 +1,124 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: Roboto;
+  src: url(/assets/fonts/Roboto-Regular.ttf);
+}
 
-/* Provide sufficient contrast against white background */
+@font-face {
+  font-family: Monoton;
+  src: url(/assets/fonts/Monoton-Regular.ttf);
+}
+
+html,
+body {
+  height: 100%;
+  display: block;
+  min-width: 330px;
+  margin: 0;
+  font-size: 14px;
+  font-family: Roboto;
+  background-color: #ffffff;
+}
+
 a {
-  color: #0366d6;
+  outline: none;
 }
 
-code {
-  color: #e01a76;
+.container {
+  display: flex;
+  justify-content: center;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+.row {
+  max-width: 1192px;
+  width: 100%;
+  margin: 0 64px;
+}
+
+.validation-error {
+  margin-top: 0.2rem;
+}
+
+.validation-error__text {
+  color: #ef9400;
+}
+
+.validation-error__icon {
+  margin-right: 0.3rem;
+}
+
+.validation-error__input {
+  border-color: #ef9400 !important;
+  background-color: #fef7ea;
+}
+
+.validation-error__input:focus {
+  box-shadow: 0 0 0 0.1rem #fcf1de !important;
+}
+
+.error-box {
+  width: 100%;
+  margin-top: 1rem;
+  border: 1px solid #fba298;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #fdc4be;
+}
+
+.error-box__message {
+  color: #333c48;
+}
+
+.separator {
+  margin: 0.5rem 0 0 0;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-color: #e1e4e8;
+}
+
+@media (min-width: 1080px) {
+  .row {
+    margin: 0 64px;
+  }
+}
+
+@media (min-width: 728px) and (max-width: 903.98px) {
+  .row {
+    margin: 0 48px;
+  }
+}
+
+@media (min-width: 552px) and (max-width: 727.98px) {
+  .row {
+    margin: 0 24px;
+  }
+}
+
+@media (max-width: 551.98px) {
+  .row {
+    margin: 0 24px;
+  }
+}
+
+/* Angular materials styles */
+
+.mat-elevation-z4 {
+  box-shadow: 0 8px 24px rgba(149, 157, 165, 0.2);
+  border: 1px solid #e1e4e8;
+}
+
+.mat-menu-panel {
+  width: 180px;
+}
+
+.mat-menu-content,
+.mat-menu-content:not(:empty) {
+  padding: 1rem 0 !important;
+  background-color: #ffffff;
+}
+
+.mat-menu-item {
+  padding: 0 1rem !important;
+  line-height: 2.5rem !important;
+  height: 2.5rem !important;
 }

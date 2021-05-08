@@ -1,5 +1,4 @@
-﻿using System;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using DevToDev.Application.Common.Interfaces;
 using Microsoft.AspNetCore.Http;
 
@@ -18,7 +17,13 @@ namespace WebUi.Services
 
         public string IpAddress => GetUserIpAddress();
 
-        public string UserEmail => _httpContextAccessor.HttpContext?.User.FindFirst(ClaimTypes.Email)?.Value;
+        public string Email => _httpContextAccessor.HttpContext?.User.FindFirst(ClaimTypes.Email)?.Value;
+
+        public string Username => _httpContextAccessor.HttpContext?.User.FindFirst("username")?.Value;
+
+        public string FirstName => _httpContextAccessor.HttpContext?.User.FindFirst("firstname")?.Value;
+
+        public string LastName => _httpContextAccessor.HttpContext?.User.FindFirst("lastname")?.Value;
 
         private string GetUserIpAddress()
         {
