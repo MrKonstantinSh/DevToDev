@@ -45,3 +45,8 @@
 .menu-item__text {
   font-size: 1.1rem;
 }
+
+.menu-boarder {
+  height: 80px;
+  border-bottom: 1px solid #dbdad7;
+}
