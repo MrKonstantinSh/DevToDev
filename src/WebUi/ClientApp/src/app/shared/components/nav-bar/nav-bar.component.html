@@ -27,7 +27,15 @@
               <span class="menu-item__text">Your profile</span>
             </button>
             <button mat-menu-item>
-              <span class="menu-item__text">Your blog</span>
+              <span class="menu-item__text">Your articles</span>
+            </button>
+            <hr class="separator margin-bottom" />
+            <button mat-menu-item>
+              <span
+                class="menu-item__text"
+                (click)="redirectToArticleConstructor()"
+                >Create article</span
+              >
             </button>
             <hr class="separator" style="margin-bottom: 0.5rem" />
             <button mat-menu-item (click)="logOut()">

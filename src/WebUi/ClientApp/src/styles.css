@@ -76,6 +76,10 @@ a {
   border-color: #e1e4e8;
 }
 
+.margin-bottom {
+  margin-bottom: 0.5rem;
+}
+
 @media (min-width: 1080px) {
   .row {
     margin: 0 64px;

@@ -8,9 +8,10 @@ import { SearchInputComponent } from "./components/search-input/search-input.com
 import { MatCardModule } from "@angular/material/card";
 import { CardComponent } from "./components/card/card.component";
 import { SearchResultComponent } from './components/search-result/search-result.component';
+import { ArticleConstructorComponent } from './components/article-constructor/article-constructor.component';
 
 @NgModule({
-  declarations: [FeedComponent, SearchInputComponent, CardComponent, SearchResultComponent],
+  declarations: [FeedComponent, SearchInputComponent, CardComponent, SearchResultComponent, ArticleConstructorComponent],
   imports: [CommonModule, BlogRoutingModule, SharedModule, MatCardModule],
   exports: [],
   providers: [NavBarComponent],

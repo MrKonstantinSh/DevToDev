@@ -35,6 +35,10 @@ export class NavBarComponent implements OnInit {
     );
   }
 
+  redirectToArticleConstructor() {
+    this.router.navigateByUrl("/article-constructor");
+  }
+
   private loadCurrentUser() {
     if (localStorage.getItem("accessToken")) {
       this.identityService.loadCurrentUser().subscribe(

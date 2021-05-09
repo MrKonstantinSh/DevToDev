@@ -1,0 +1,78 @@
+.editor-title {
+  margin: 3rem 0;
+  text-align: center;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #333c48;
+}
+
+.editor-input {
+  width: 100%;
+  margin: 0 0 2rem 0;
+  padding: 1rem 0;
+  border-top: 1px solid #dbdad7;
+  border-bottom: 1px solid #dbdad7;
+  border-left: none;
+  border-right: none;
+  outline: none;
+  word-wrap: break-word;
+  font-family: "Roboto";
+  font-size: 1.4rem;
+  line-height: 30px;
+  color: #333c48;
+}
+
+.textarea {
+  height: 100px;
+  resize: none;
+}
+
+.editor {
+  margin: 0 0 2rem 0;
+  padding: 2rem 0;
+  border-top: 1px solid #dbdad7;
+  border-bottom: 1px solid #dbdad7;
+  outline: none;
+  word-wrap: break-word;
+  font-family: "Roboto";
+  font-size: 1.4rem;
+  line-height: 30px;
+  color: #333c48;
+}
+
+.publish-article__button {
+  display: block;
+  width: 300px;
+  margin: 0 auto;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-family: Roboto;
+  color: #ffffff;
+  background-color: #2db52b;
+  outline: none;
+  cursor: pointer;
+}
+
+.publish-article__button:hover {
+  background-color: #28b026;
+}
+
+::-webkit-input-placeholder {
+  font-style: italic;
+  color: #b3b3b1;
+}
+:-moz-placeholder {
+  font-style: italic;
+  color: #b3b3b1;
+}
+::-moz-placeholder {
+  font-style: italic;
+  color: #b3b3b1;
+}
+:-ms-input-placeholder {
+  font-style: italic;
+  color: #b3b3b1;
+}
