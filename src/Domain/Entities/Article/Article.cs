@@ -1,4 +1,5 @@
 ﻿using System;
+using DevToDev.Domain.Entities.Identity;
 
 namespace DevToDev.Domain.Entities.Article
 {
@@ -10,5 +11,7 @@ namespace DevToDev.Domain.Entities.Article
         public string Url { get; set; }
         public DateTime DateOfCreation { get; set; }
         public DateTime DateOfLastUpdate { get; set; }
+
+        public User User { get; set; }
     }
 }
