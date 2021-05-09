@@ -4,7 +4,7 @@
 
 .logo {
   float: left;
-  margin: 24px 0;
+  margin: 18.5px 0;
   font-size: 2rem;
   font-family: Monoton;
   font-weight: 100;
@@ -44,4 +44,9 @@
 
 .menu-item__text {
   font-size: 1.1rem;
+}
+
+.menu-boarder {
+  height: 80px;
+  border-bottom: 1px solid #dbdad7;
 }
