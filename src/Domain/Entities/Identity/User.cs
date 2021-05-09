@@ -9,6 +9,7 @@ namespace DevToDev.Domain.Entities.Identity
         {
             Roles = new List<Role>();
             RefreshSessions = new List<RefreshSession>();
+            Articles = new List<Article.Article>();
         }
 
         public string Username { get; set; }
@@ -23,5 +24,6 @@ namespace DevToDev.Domain.Entities.Identity
         public UserDetails UserDetails { get; set; }
         public IList<Role> Roles { get; set; }
         public IList<RefreshSession> RefreshSessions { get; set; }
+        public IList<Article.Article> Articles { get; set; }
     }
 }

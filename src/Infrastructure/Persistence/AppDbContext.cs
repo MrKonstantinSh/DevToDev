@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using DevToDev.Application.Common.Interfaces;
+using DevToDev.Domain.Entities.Article;
 using DevToDev.Domain.Entities.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +18,8 @@ namespace DevToDev.Infrastructure.Persistence
         public DbSet<UserDetails> UserDetails { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<RefreshSession> RefreshSessions { get; set; }
+
+        public DbSet<Article> Articles { get; set; }
 
         public Task<int> SaveChangesAsync()
         {
