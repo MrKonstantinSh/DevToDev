@@ -25,6 +25,7 @@
     "@angular/router": "11.2.9",
     "core-js": "^3.3.3",
     "get-browser-fingerprint": "^1.1.0",
+    "medium-editor": "^5.23.3",
     "rxjs": "^6.6.7",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
