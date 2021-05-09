@@ -60,6 +60,11 @@
   background-color: #28b026;
 }
 
+.publish-article__button:disabled {
+  cursor: auto;
+  background-color: #93d792;
+}
+
 ::-webkit-input-placeholder {
   font-style: italic;
   color: #b3b3b1;
