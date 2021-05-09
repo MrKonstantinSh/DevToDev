@@ -126,7 +126,7 @@ a {
 .mat-card {
   max-width: 350px !important;
   border: 1px solid #dbdad7 !important;
-  box-shadow: 0 8px 10px rgba(149, 157, 165, 0.2) !important;
+  box-shadow: 0 8px 24px rgba(149, 157, 165, 0.2) !important;
 }
 
 .mat-card-title {
