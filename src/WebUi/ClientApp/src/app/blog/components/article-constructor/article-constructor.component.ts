@@ -55,8 +55,6 @@ export class ArticleConstructorComponent implements AfterViewInit {
     articleDto.description = this.addArticleForm.controls.description.value;
     articleDto.content = this.content.nativeElement.innerHTML;
 
-    console.log(articleDto);
-
     this.articleService.createArticle(articleDto).subscribe(
       (articleId) => {
         console.log(articleId);
