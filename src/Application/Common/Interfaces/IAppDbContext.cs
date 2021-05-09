@@ -12,6 +12,8 @@ namespace DevToDev.Application.Common.Interfaces
         public DbSet<Role> Roles { get; set; }
         public DbSet<RefreshSession> RefreshSessions { get; set; }
 
+        public DbSet<Domain.Entities.Article.Article> Articles { get; set; }
+
         public Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }
