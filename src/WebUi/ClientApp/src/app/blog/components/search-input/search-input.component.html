@@ -1,0 +1,21 @@
+<mat-form-field class="example-chip-list">
+  <mat-label>Tags</mat-label>
+  <mat-chip-list #chipList aria-label="Fruit selection">
+    <mat-chip
+      *ngFor="let fruit of fruits"
+      [selectable]="selectable"
+      [removable]="removable"
+      (removed)="remove(fruit)"
+    >
+      {{ fruit.name }}
+      <i matChipRemove class="fa fa-times" aria-hidden="true"></i>
+    </mat-chip>
+    <input
+      placeholder="Add tag"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="addOnBlur"
+      (matChipInputTokenEnd)="add($event)"
+    />
+  </mat-chip-list>
+</mat-form-field>

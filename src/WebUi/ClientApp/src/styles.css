@@ -122,3 +122,12 @@ a {
   line-height: 2.5rem !important;
   height: 2.5rem !important;
 }
+
+.mat-form-field {
+  color: #333c48 !important;
+}
+
+.mat-input-element {
+  font-size: 1.1rem !important;
+  color: #333c48 !important;
+}

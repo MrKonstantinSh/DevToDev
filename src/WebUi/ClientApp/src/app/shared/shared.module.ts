@@ -4,8 +4,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { NavBarComponent } from "./components/nav-bar/nav-bar.component";
 import { RouterModule } from "@angular/router";
 import { MatMenuModule } from "@angular/material/menu";
-
-const materials = [MatMenuModule];
+import { MatChipsModule } from "@angular/material/chips";
 
 @NgModule({
   declarations: [NavBarComponent],
