@@ -2,17 +2,32 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { BlogRoutingModule } from "./blog-routing.module";
 import { SharedModule } from "../shared/shared.module";
-import { FeedComponent } from "./components/search/search.component";
+import { SearchPageComponent } from "./components/search-page/search-page.component";
 import { NavBarComponent } from "../shared/components/nav-bar/nav-bar.component";
-import { SearchInputComponent } from "./components/search-input/search-input.component";
 import { MatCardModule } from "@angular/material/card";
-import { CardComponent } from "./components/card/card.component";
-import { SearchResultComponent } from './components/search-result/search-result.component';
-import { ArticleConstructorComponent } from './components/article-constructor/article-constructor.component';
+import { ArticleCardComponent } from "./components/article-card/article-card.component";
+import { ArticleConstructorPageComponent } from "./components/article-constructor-page/article-constructor-page.component";
+import { ArticlePageComponent } from "./components/article-page/article-page.component";
+import { FormsModule } from "@angular/forms";
+import { MyArticlesPageComponent } from './components/my-articles-page/my-articles-page.component';
+import { EditArticlePageComponent } from './components/edit-article-page/edit-article-page.component';
 
 @NgModule({
-  declarations: [FeedComponent, SearchInputComponent, CardComponent, SearchResultComponent, ArticleConstructorComponent],
-  imports: [CommonModule, BlogRoutingModule, SharedModule, MatCardModule],
+  declarations: [
+    SearchPageComponent,
+    ArticleCardComponent,
+    ArticleConstructorPageComponent,
+    ArticlePageComponent,
+    MyArticlesPageComponent,
+    EditArticlePageComponent,
+  ],
+  imports: [
+    CommonModule,
+    BlogRoutingModule,
+    SharedModule,
+    MatCardModule,
+    FormsModule,
+  ],
   exports: [],
   providers: [NavBarComponent],
 })

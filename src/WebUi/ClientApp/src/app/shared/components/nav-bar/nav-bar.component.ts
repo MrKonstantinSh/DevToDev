@@ -35,7 +35,11 @@ export class NavBarComponent implements OnInit {
     );
   }
 
-  redirectToArticleConstructor() {
+  redirectToMyArticlesPage() {
+    this.router.navigateByUrl("/my-articles");
+  }
+
+  redirectToArticleConstructorPage() {
     this.router.navigateByUrl("/article-constructor");
   }
 
