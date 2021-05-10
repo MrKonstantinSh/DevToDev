@@ -38,4 +38,8 @@ export class ArticleCardComponent implements OnInit {
   viewArticle(articleId) {
     this.router.navigateByUrl(`/article/${articleId}`);
   }
+
+  editArticle(articleId) {
+    this.router.navigateByUrl(`/edit-article/${articleId}`);
+  }
 }

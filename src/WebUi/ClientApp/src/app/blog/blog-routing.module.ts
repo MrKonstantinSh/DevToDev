@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "../shared/guards/auth.guard";
 import { ArticleConstructorPageComponent } from "./components/article-constructor-page/article-constructor-page.component";
 import { ArticlePageComponent } from "./components/article-page/article-page.component";
+import { EditArticlePageComponent } from "./components/edit-article-page/edit-article-page.component";
 import { MyArticlesPageComponent } from "./components/my-articles-page/my-articles-page.component";
 import { SearchPageComponent } from "./components/search-page/search-page.component";
 
@@ -28,6 +29,12 @@ const routes: Routes = [
   {
     path: "my-articles",
     component: MyArticlesPageComponent,
+    canLoad: [AuthGuard],
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "edit-article/:id",
+    component: EditArticlePageComponent,
     canLoad: [AuthGuard],
     canActivate: [AuthGuard],
   },

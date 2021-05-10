@@ -10,6 +10,7 @@ import { ArticleConstructorPageComponent } from "./components/article-constructo
 import { ArticlePageComponent } from "./components/article-page/article-page.component";
 import { FormsModule } from "@angular/forms";
 import { MyArticlesPageComponent } from './components/my-articles-page/my-articles-page.component';
+import { EditArticlePageComponent } from './components/edit-article-page/edit-article-page.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { MyArticlesPageComponent } from './components/my-articles-page/my-articl
     ArticleConstructorPageComponent,
     ArticlePageComponent,
     MyArticlesPageComponent,
+    EditArticlePageComponent,
   ],
   imports: [
     CommonModule,
