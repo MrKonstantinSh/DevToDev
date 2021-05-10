@@ -2,15 +2,26 @@
 <div class="container search-component">
   <div class="row">
     <div class="search-container">
-      <input class="search-input" type="text" placeholder="Search" />
-      <button class="search-button">
+      <input
+        [(ngModel)]="searchInput"
+        class="search-input"
+        type="text"
+        placeholder="Search"
+      />
+      <button class="search-button" (click)="search()">
         <i class="fa fa-search" aria-hidden="true"></i>
       </button>
     </div>
 
     <section class="search-result">
       <div class="search-result-container">
-        <app-article-card></app-article-card>
+        <a
+          *ngFor="let article of articles"
+          [routerLink]="['/article/' + article.id]"
+          routerLinkActive="active"
+        >
+          <app-article-card [article]="article"></app-article-card>
+        </a>
       </div>
       <div class="discover-more-container">
         <h3 class="discover-title">DISCOVER MORE OF WHAT MATTERS TO YOU</h3>

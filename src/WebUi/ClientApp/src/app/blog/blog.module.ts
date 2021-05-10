@@ -8,6 +8,7 @@ import { MatCardModule } from "@angular/material/card";
 import { ArticleCardComponent } from "./components/article-card/article-card.component";
 import { ArticleConstructorPageComponent } from "./components/article-constructor-page/article-constructor-page.component";
 import { ArticlePageComponent } from "./components/article-page/article-page.component";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,13 @@ import { ArticlePageComponent } from "./components/article-page/article-page.com
     ArticleConstructorPageComponent,
     ArticlePageComponent,
   ],
-  imports: [CommonModule, BlogRoutingModule, SharedModule, MatCardModule],
+  imports: [
+    CommonModule,
+    BlogRoutingModule,
+    SharedModule,
+    MatCardModule,
+    FormsModule,
+  ],
   exports: [],
   providers: [NavBarComponent],
 })
