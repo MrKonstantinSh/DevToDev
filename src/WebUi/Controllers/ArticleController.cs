@@ -4,6 +4,7 @@ using DevToDev.Application.Article.Commands.CreateArticle;
 using DevToDev.Application.Article.Dtos;
 using DevToDev.Application.Article.Queries.GetArticleById;
 using DevToDev.Application.Article.Queries.GetArticleByKeyWords;
+using DevToDev.Application.Article.Queries.GetArticleForCurrentUser;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +22,13 @@ namespace WebUi.Controllers
         [Authorize]
         [HttpGet("search")]
         public async Task<ActionResult<List<ArticleDto>>> GetArticleByKeyWords([FromQuery] GetArticleByKeyWordsQuery query)
+        {
+            return await Mediator.Send(query);
+        }
+
+        [Authorize]
+        [HttpGet("my-articles")]
+        public async Task<ActionResult<List<ArticleDto>>> GetArticleByKeyWords([FromQuery] GetArticleForCurrentUserQuery query)
         {
             return await Mediator.Send(query);
         }
