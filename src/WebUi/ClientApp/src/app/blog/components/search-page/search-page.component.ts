@@ -25,7 +25,11 @@ export class SearchPageComponent implements OnInit {
 
   constructor(private articleService: ArticleService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.articleService.getLatestArticles().subscribe((articles) => {
+      this.articles = articles;
+    });
+  }
 
   search() {
     this.articleService

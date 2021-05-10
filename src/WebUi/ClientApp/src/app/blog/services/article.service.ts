@@ -38,6 +38,17 @@ export class ArticleService {
       );
   }
 
+  getLatestArticles(): Observable<Article[]> {
+    return this.httpClient.get(this.baseUrl + "/article/latest", {}).pipe(
+      tap((articles: Article[]) => {
+        return of(articles);
+      }),
+      catchError(() => {
+        return of(null);
+      })
+    );
+  }
+
   createArticle(values: ArticleDto): Observable<number | boolean> {
     return this.httpClient.post(this.baseUrl + "/article/create", values).pipe(
       tap((articleId: number) => {
