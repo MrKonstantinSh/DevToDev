@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using DevToDev.Application.Article.Commands.CreateArticle;
+using DevToDev.Application.Article.Commands.DeleteArticle;
 using DevToDev.Application.Article.Commands.UpdateArticleCommand;
 using DevToDev.Application.Article.Dtos;
 using DevToDev.Application.Article.Queries.GetArticleById;
@@ -59,6 +60,15 @@ namespace WebUi.Controllers
             }
 
             await Mediator.Send(command);
+
+            return NoContent();
+        }
+
+        [Authorize]
+        [HttpDelete("remove/{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            await Mediator.Send(new DeleteArticleCommand { Id = id });
 
             return NoContent();
         }
