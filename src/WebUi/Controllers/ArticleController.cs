@@ -5,6 +5,7 @@ using DevToDev.Application.Article.Dtos;
 using DevToDev.Application.Article.Queries.GetArticleById;
 using DevToDev.Application.Article.Queries.GetArticleByKeyWords;
 using DevToDev.Application.Article.Queries.GetArticleForCurrentUser;
+using DevToDev.Application.Article.Queries.GetNewArticles;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,8 +28,15 @@ namespace WebUi.Controllers
         }
 
         [Authorize]
-        [HttpGet("my-articles")]
-        public async Task<ActionResult<List<ArticleDto>>> GetArticleByKeyWords([FromQuery] GetArticleForCurrentUserQuery query)
+        [HttpGet("my")]
+        public async Task<ActionResult<List<ArticleDto>>> GetCurrentUserArticles([FromQuery] GetArticleForCurrentUserQuery query)
+        {
+            return await Mediator.Send(query);
+        }
+
+        [Authorize]
+        [HttpGet("latest")]
+        public async Task<ActionResult<List<ArticleDto>>> GetLatestTenArticles([FromQuery] GetNewArticlesQuery query)
         {
             return await Mediator.Send(query);
         }
