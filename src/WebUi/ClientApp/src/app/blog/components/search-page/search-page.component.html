@@ -14,7 +14,11 @@
     </div>
 
     <section class="search-result">
-      <div class="search-result-container">
+      <div *ngIf="articles.length == 0" class="not-found">
+        <i class="fa fa-search fa-4x" aria-hidden="true"></i>
+        <p>No search results were founds</p>
+      </div>
+      <div *ngIf="articles.length > 0" class="search-result-container">
         <a
           *ngFor="let article of articles"
           [routerLink]="['/article/' + article.id]"
@@ -26,14 +30,13 @@
       <div class="discover-more-container">
         <h3 class="discover-title">DISCOVER MORE OF WHAT MATTERS TO YOU</h3>
         <div class="tag-buttons">
-          <button class="tag-button">Test 1</button>
-          <button class="tag-button">Lfdslfs sdf</button>
-          <button class="tag-button">fdsfdsf sd</button>
-          <button class="tag-button">Tfdsgh werwer</button>
-          <button class="tag-button">Tfdsf</button>
-          <button class="tag-button">Kfisdj fsd</button>
-          <button class="tag-button">Fsdf fsd</button>
-          <button class="tag-button">Fsdf fd</button>
+          <button
+            *ngFor="let tag of tags"
+            class="tag-button"
+            (click)="searchByTag(tag)"
+          >
+            {{ tag }}
+          </button>
         </div>
       </div>
     </section>

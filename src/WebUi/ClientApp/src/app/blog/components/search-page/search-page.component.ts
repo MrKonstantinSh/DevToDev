@@ -8,8 +8,20 @@ import { ArticleService } from "../../services/article.service";
   styleUrls: ["./search-page.component.css"],
 })
 export class SearchPageComponent implements OnInit {
+  tags: string[] = [
+    "Programming languages",
+    "OS",
+    "C#",
+    "Java",
+    "Python",
+    "Java Script",
+    "Architecture",
+    "Machine learning",
+    "Web",
+  ];
+
   searchInput: string;
-  articles: Article[];
+  articles: Article[] = [];
 
   constructor(private articleService: ArticleService) {}
 
@@ -21,5 +33,11 @@ export class SearchPageComponent implements OnInit {
       .subscribe((articles) => {
         this.articles = articles;
       });
+  }
+
+  searchByTag(tag: string) {
+    this.articleService.searchArticle(tag).subscribe((articles) => {
+      this.articles = articles;
+    });
   }
 }
