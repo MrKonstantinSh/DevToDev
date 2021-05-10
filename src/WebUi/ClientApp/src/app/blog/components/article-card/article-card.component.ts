@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { Article } from "src/app/shared/models/article";
 
 @Component({
@@ -11,8 +12,13 @@ export class ArticleCardComponent implements OnInit {
   imageUrl: string;
   dateOfCreation: string;
   description: string;
+  isMyArticlesPage = false;
 
-  constructor() {}
+  constructor(private router: Router) {
+    if (router.url === "/my-articles") {
+      this.isMyArticlesPage = true;
+    }
+  }
 
   ngOnInit(): void {
     this.dateOfCreation = new Date(

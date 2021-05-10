@@ -9,6 +9,7 @@ import { ArticleCardComponent } from "./components/article-card/article-card.com
 import { ArticleConstructorPageComponent } from "./components/article-constructor-page/article-constructor-page.component";
 import { ArticlePageComponent } from "./components/article-page/article-page.component";
 import { FormsModule } from "@angular/forms";
+import { MyArticlesPageComponent } from './components/my-articles-page/my-articles-page.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { FormsModule } from "@angular/forms";
     ArticleCardComponent,
     ArticleConstructorPageComponent,
     ArticlePageComponent,
+    MyArticlesPageComponent,
   ],
   imports: [
     CommonModule,

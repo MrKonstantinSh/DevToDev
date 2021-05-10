@@ -11,6 +11,7 @@
 }
 
 .card-content {
+  height: 135.39px;
   margin-left: 220px;
 }
 
@@ -44,4 +45,72 @@
 .card-content__author {
   font-size: 0.9rem;
   color: #434f5f;
+}
+
+/* My article */
+.my-article-card {
+  width: calc(100% - 2rem - 2px);
+  height: 196px;
+  border: 1px solid #dbdad7;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+.my-article-buttons {
+  float: left;
+  width: 100%;
+  margin-top: 0.7rem;
+  border-top: 1px solid #dbdad7;
+  padding-top: 1rem;
+}
+
+.my-article-button__view {
+  width: 100px;
+  margin-right: 1rem;
+  border: 1px solid #dbdad7;
+  border-radius: 5px;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  outline: none;
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #333c48;
+}
+
+.my-article-button__view:hover {
+  border-color: #afaeac;
+}
+
+.my-article-button__edit {
+  width: 100px;
+  margin-right: 1rem;
+  border: 1px solid #8ee68d;
+  border-radius: 5px;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  outline: none;
+  cursor: pointer;
+  background-color: #eefbed;
+  color: #333c48;
+}
+
+.my-article-button__edit:hover {
+  border-color: #52c454;
+}
+
+.my-article-button__delete {
+  float: right;
+  width: 100px;
+  border: 1px solid #fba298;
+  border-radius: 5px;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  outline: none;
+  cursor: pointer;
+  background-color: #fdc4be;
+  color: #333c48;
+}
+
+.my-article-button__delete:hover {
+  border-color: #f96f5f;
 }
