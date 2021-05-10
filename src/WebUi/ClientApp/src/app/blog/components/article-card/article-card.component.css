@@ -18,7 +18,7 @@
 .card-content__title {
   margin-top: 0;
   margin-bottom: 0.5rem;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: bold;
   color: #333c48;
 }
@@ -113,4 +113,76 @@
 
 .my-article-button__delete:hover {
   border-color: #f96f5f;
+}
+
+@media (min-width: 728px) and (max-width: 903.98px) {
+  .card-content__title {
+    font-size: 1.3rem;
+  }
+
+  .card-content__description {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 552px) and (max-width: 727.98px) {
+  .card-content__title {
+    font-size: 1.1rem;
+  }
+
+  .card-content__description {
+    display: none;
+  }
+}
+
+@media (max-width: 551.98px) {
+  .card {
+    width: calc(100% - 48px -2px) !important;
+    height: auto;
+  }
+
+  .my-article-card {
+    width: calc(100% - 48px -2px) !important;
+    height: auto !important;
+  }
+
+  .card-content__title {
+    margin-top: 0.5rem;
+    font-size: 1.3rem;
+  }
+
+  .card-content__description {
+    display: none;
+  }
+
+  .card-image {
+    float: none;
+    width: 100%;
+    height: auto;
+  }
+
+  .card-content {
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+
+  .my-article-buttons {
+    float: none !important;
+  }
+
+  .my-article-button__view {
+    width: 70px;
+    padding: 0.5rem 1rem;
+  }
+
+  .my-article-button__edit {
+    width: 70px;
+    padding: 0.5rem 1rem;
+  }
+
+  .my-article-button__delete {
+    width: 70px;
+    padding: 0.5rem 1rem;
+  }
 }

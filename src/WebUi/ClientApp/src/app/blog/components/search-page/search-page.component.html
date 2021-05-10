@@ -18,15 +18,6 @@
         <i class="fa fa-search fa-4x" aria-hidden="true"></i>
         <p>No search results were founds</p>
       </div>
-      <div *ngIf="articles.length > 0" class="search-result-container">
-        <a
-          *ngFor="let article of articles"
-          [routerLink]="['/article/' + article.id]"
-          routerLinkActive="active"
-        >
-          <app-article-card [article]="article"></app-article-card>
-        </a>
-      </div>
       <div class="discover-more-container">
         <h3 class="discover-title">DISCOVER MORE OF WHAT MATTERS TO YOU</h3>
         <div class="tag-buttons">
@@ -38,6 +29,15 @@
             {{ tag }}
           </button>
         </div>
+      </div>
+      <div *ngIf="articles.length > 0" class="search-result-container">
+        <a
+          *ngFor="let article of articles"
+          [routerLink]="['/article/' + article.id]"
+          routerLinkActive="active"
+        >
+          <app-article-card [article]="article"></app-article-card>
+        </a>
       </div>
     </section>
   </div>

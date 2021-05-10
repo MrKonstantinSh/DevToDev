@@ -84,6 +84,7 @@
   float: right;
   width: 350px;
   margin-left: 50px;
+  margin-bottom: 2rem;
 }
 
 .discover-title {
@@ -107,4 +108,14 @@
   cursor: pointer;
   background-color: #ffffff;
   color: rgba(117, 117, 117, 1);
+}
+
+@media (max-width: 1325px) {
+  .search-result-container {
+    width: 100%;
+  }
+
+  .discover-more-container {
+    width: 100%;
+  }
 }
