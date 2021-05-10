@@ -1,7 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using DevToDev.Application.Article.Commands.CreateArticle;
 using DevToDev.Application.Article.Dtos;
 using DevToDev.Application.Article.Queries.GetArticleById;
+using DevToDev.Application.Article.Queries.GetArticleByKeyWords;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +14,13 @@ namespace WebUi.Controllers
         [Authorize]
         [HttpGet]
         public async Task<ActionResult<ArticleDto>> GetArticleById([FromQuery] GetArticleByIdQuery query)
+        {
+            return await Mediator.Send(query);
+        }
+
+        [Authorize]
+        [HttpGet("search")]
+        public async Task<ActionResult<List<ArticleDto>>> GetArticleByKeyWords([FromQuery] GetArticleByKeyWordsQuery query)
         {
             return await Mediator.Send(query);
         }
