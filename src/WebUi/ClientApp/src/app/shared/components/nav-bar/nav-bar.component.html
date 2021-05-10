@@ -1,7 +1,9 @@
 <div class="container menu-boarder">
   <div class="row">
     <section class="nav-bar">
-      <a [routerLink]="['/']" routerLinkActive="active"
+      <a
+        [routerLink]="(currentUser$ | async) ? ['/search'] : ['/']"
+        routerLinkActive="active"
         ><h1 class="logo">DevToDev</h1></a
       >
       <ng-container *ngIf="(currentUser$ | async) === null">

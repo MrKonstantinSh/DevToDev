@@ -7,10 +7,10 @@ declare const MediumEditor: any;
 
 @Component({
   selector: "app-article-constructor",
-  templateUrl: "./article-constructor.component.html",
-  styleUrls: ["./article-constructor.component.css"],
+  templateUrl: "./article-constructor-page.component.html",
+  styleUrls: ["./article-constructor-page.component.css"],
 })
-export class ArticleConstructorComponent implements AfterViewInit {
+export class ArticleConstructorPageComponent implements AfterViewInit {
   addArticleForm: FormGroup;
   @ViewChild("content", { static: true }) content: ElementRef;
   editor: any;

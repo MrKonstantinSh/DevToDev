@@ -11,10 +11,10 @@ import { ArticleService } from "../../services/article.service";
 
 @Component({
   selector: "app-article",
-  templateUrl: "./article.component.html",
-  styleUrls: ["./article.component.css"],
+  templateUrl: "./article-page.component.html",
+  styleUrls: ["./article-page.component.css"],
 })
-export class ArticleComponent implements OnInit, AfterViewInit {
+export class ArticlePageComponent implements OnInit, AfterViewInit {
   @ViewChild("content") content: ElementRef;
   article: Article;
 
