@@ -1,10 +1,11 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
-import { catchError, tap } from "rxjs/operators";
+import { catchError, mapTo, tap } from "rxjs/operators";
 import { Article } from "src/app/shared/models/article";
 import { environment } from "src/environments/environment";
 import { ArticleDto } from "../dtos/articleDto";
+import { ArticleToUpdateDto } from "../dtos/articleToUpdateDto";
 
 @Injectable({
   providedIn: "root",
@@ -71,5 +72,16 @@ export class ArticleService {
         return of(false);
       })
     );
+  }
+
+  updateArticle(values: ArticleToUpdateDto): Observable<boolean> {
+    return this.httpClient
+      .put(this.baseUrl + `/article/update/${values.id}`, values)
+      .pipe(
+        mapTo(true),
+        catchError(() => {
+          return of(false);
+        })
+      );
   }
 }

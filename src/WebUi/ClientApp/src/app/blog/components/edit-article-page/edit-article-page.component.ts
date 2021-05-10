@@ -1,9 +1,7 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { title } from "process";
-import { Article } from "src/app/shared/models/article";
-import { ArticleDto } from "../../dtos/articleDto";
+import { ArticleToUpdateDto } from "../../dtos/articleToUpdateDto";
 import { ArticleService } from "../../services/article.service";
 declare const MediumEditor: any;
 
@@ -16,6 +14,8 @@ export class EditArticlePageComponent implements AfterViewInit {
   editArticleForm: FormGroup;
   @ViewChild("content", { static: true }) content: ElementRef;
   editor: any;
+
+  currentArticleId: number;
 
   constructor(
     private articleService: ArticleService,
@@ -60,28 +60,31 @@ export class EditArticlePageComponent implements AfterViewInit {
 
       this.editor.selectElement(document.querySelector(".editor"));
       this.editor.pasteHTML(article.content);
+
+      this.currentArticleId = article.id;
     });
   }
 
   onSubmit() {
-    const articleDto = new ArticleDto();
-    articleDto.title = this.editArticleForm.controls.title.value;
-    articleDto.description = this.editArticleForm.controls.description.value;
-    articleDto.content = this.content.nativeElement.innerHTML;
+    const articleToUpdateDto = new ArticleToUpdateDto();
+    articleToUpdateDto.id = this.currentArticleId;
+    articleToUpdateDto.title = this.editArticleForm.controls.title.value;
+    articleToUpdateDto.description = this.editArticleForm.controls.description.value;
+    articleToUpdateDto.content = this.content.nativeElement.innerHTML;
 
-    articleDto.content = articleDto.content.replaceAll(
+    articleToUpdateDto.content = articleToUpdateDto.content.replaceAll(
       "<img",
       '<img style="width: 100%"'
     );
 
-    // this.articleService.createArticle(articleDto).subscribe(
-    //   (articleId) => {
-    //     this.router.navigateByUrl(`/article/${articleId}`);
-    //   },
-    //   (error) => {
-    //     // TODO: add error handler
-    //   }
-    // );
+    this.articleService.updateArticle(articleToUpdateDto).subscribe(
+      () => {
+        this.router.navigateByUrl(`/article/${this.currentArticleId}`);
+      },
+      (error) => {
+        // TODO: add error handler
+      }
+    );
   }
 
   private createArticleForm() {
