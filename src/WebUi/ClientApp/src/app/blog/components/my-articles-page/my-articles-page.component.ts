@@ -14,6 +14,12 @@ export class MyArticlesPageComponent implements OnInit {
   constructor(private articleService: ArticleService, private router: Router) {}
 
   ngOnInit(): void {
+    this.articleService.refreshNeeded$.subscribe(() => {
+      this.articleService.getMyArticles().subscribe((articles) => {
+        this.articles = articles;
+      });
+    });
+
     this.articleService.getMyArticles().subscribe((articles) => {
       this.articles = articles;
     });

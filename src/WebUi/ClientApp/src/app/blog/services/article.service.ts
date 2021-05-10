@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, of } from "rxjs";
+import { Observable, of, Subject } from "rxjs";
 import { catchError, mapTo, tap } from "rxjs/operators";
 import { Article } from "src/app/shared/models/article";
 import { environment } from "src/environments/environment";
@@ -12,6 +12,12 @@ import { ArticleToUpdateDto } from "../dtos/articleToUpdateDto";
 })
 export class ArticleService {
   private readonly baseUrl: string = environment.apiUrl;
+
+  private _refreshNeeded$ = new Subject<void>();
+
+  get refreshNeeded$() {
+    return this._refreshNeeded$;
+  }
 
   constructor(private httpClient: HttpClient) {}
 
@@ -78,6 +84,20 @@ export class ArticleService {
     return this.httpClient
       .put(this.baseUrl + `/article/update/${values.id}`, values)
       .pipe(
+        mapTo(true),
+        catchError(() => {
+          return of(false);
+        })
+      );
+  }
+
+  deleteArticle(articleId): Observable<boolean> {
+    return this.httpClient
+      .delete(this.baseUrl + `/article/remove/${articleId}`)
+      .pipe(
+        tap(() => {
+          this._refreshNeeded$.next();
+        }),
         mapTo(true),
         catchError(() => {
           return of(false);

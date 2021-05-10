@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Article } from "src/app/shared/models/article";
+import { ArticleService } from "../../services/article.service";
 
 @Component({
   selector: "app-article-card",
@@ -14,7 +15,7 @@ export class ArticleCardComponent implements OnInit {
   description: string;
   isMyArticlesPage = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private articleService: ArticleService) {
     if (router.url === "/my-articles") {
       this.isMyArticlesPage = true;
     }
@@ -41,5 +42,9 @@ export class ArticleCardComponent implements OnInit {
 
   editArticle(articleId) {
     this.router.navigateByUrl(`/edit-article/${articleId}`);
+  }
+
+  deleteArticle(articleId) {
+    this.articleService.deleteArticle(articleId).subscribe(() => {});
   }
 }
