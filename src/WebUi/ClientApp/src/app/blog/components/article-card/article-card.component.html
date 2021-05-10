@@ -10,7 +10,9 @@
     <span class="card-content__author">{{ article?.author }}</span>
   </div>
   <div *ngIf="isMyArticlesPage" class="my-article-buttons">
-    <button class="my-article-button__view">View</button>
+    <button class="my-article-button__view" (click)="viewArticle(article?.id)">
+      View
+    </button>
     <button class="my-article-button__edit">Edit</button>
     <button class="my-article-button__delete">Delete</button>
   </div>

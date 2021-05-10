@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { Article } from "src/app/shared/models/article";
 import { ArticleService } from "../../services/article.service";
 
@@ -10,7 +11,7 @@ import { ArticleService } from "../../services/article.service";
 export class MyArticlesPageComponent implements OnInit {
   articles: Article[] = [];
 
-  constructor(private articleService: ArticleService) {}
+  constructor(private articleService: ArticleService, private router: Router) {}
 
   ngOnInit(): void {
     this.articleService.getMyArticles().subscribe((articles) => {

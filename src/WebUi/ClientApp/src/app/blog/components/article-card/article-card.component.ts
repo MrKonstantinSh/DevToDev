@@ -34,4 +34,8 @@ export class ArticleCardComponent implements OnInit {
       ? this.article.content.match(/src="http.*"/g)[0].split('"')[1]
       : "https://i.stack.imgur.com/y9DpT.jpg";
   }
+
+  viewArticle(articleId) {
+    this.router.navigateByUrl(`/article/${articleId}`);
+  }
 }
