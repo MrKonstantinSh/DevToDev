@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, ViewChild, ElementRef } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 import { ArticleDto } from "../../dtos/articleDto";
 import { ArticleService } from "../../services/article.service";
 declare const MediumEditor: any;
@@ -14,7 +15,7 @@ export class ArticleConstructorComponent implements AfterViewInit {
   @ViewChild("content", { static: true }) content: ElementRef;
   editor: any;
 
-  constructor(private articleService: ArticleService) {
+  constructor(private articleService: ArticleService, private router: Router) {
     this.createArticleForm();
   }
 
@@ -55,9 +56,14 @@ export class ArticleConstructorComponent implements AfterViewInit {
     articleDto.description = this.addArticleForm.controls.description.value;
     articleDto.content = this.content.nativeElement.innerHTML;
 
+    articleDto.content = articleDto.content.replaceAll(
+      "<img",
+      '<img style="width: 100%"'
+    );
+
     this.articleService.createArticle(articleDto).subscribe(
       (articleId) => {
-        console.log(articleId);
+        this.router.navigateByUrl(`/article/${articleId}`);
       },
       (error) => {
         // TODO: add error handler

@@ -1,6 +1,12 @@
 <app-nav-bar></app-nav-bar>
 <div class="container">
   <div class="row">
-    <section></section>
+    <section class="title">
+      {{ article?.title }}
+    </section>
+    <section class="description">
+      {{ article?.description }}
+    </section>
+    <section #content class="content"></section>
   </div>
 </div>
