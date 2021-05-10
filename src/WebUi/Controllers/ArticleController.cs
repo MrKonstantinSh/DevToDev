@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using DevToDev.Application.Article.Commands.CreateArticle;
+using DevToDev.Application.Article.Commands.UpdateArticleCommand;
 using DevToDev.Application.Article.Dtos;
 using DevToDev.Application.Article.Queries.GetArticleById;
 using DevToDev.Application.Article.Queries.GetArticleByKeyWords;
@@ -46,6 +47,20 @@ namespace WebUi.Controllers
         public async Task<ActionResult<int>> CreateArticle(CreateArticleCommand command)
         {
             return await Mediator.Send(command);
+        }
+
+        [Authorize]
+        [HttpPut("update/{id}")]
+        public async Task<ActionResult> Update(int id, UpdateArticleCommand command)
+        {
+            if (id != command.Id)
+            {
+                return BadRequest();
+            }
+
+            await Mediator.Send(command);
+
+            return NoContent();
         }
     }
 }
