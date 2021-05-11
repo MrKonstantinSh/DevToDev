@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using DevToDev.Application.Identity.Commands.EditUserInfo;
 using DevToDev.Application.Identity.Commands.LogIn;
 using DevToDev.Application.Identity.Commands.LogOut;
 using DevToDev.Application.Identity.Commands.RefreshToken;
@@ -48,6 +49,15 @@ namespace WebUi.Controllers
         [Authorize]
         [HttpPost("logout")]
         public async Task<ActionResult> LogIn(LogOutCommand command)
+        {
+            await Mediator.Send(command);
+
+            return NoContent();
+        }
+
+        [Authorize]
+        [HttpPut("update")]
+        public async Task<ActionResult> Update(EditUserInfoCommand command)
         {
             await Mediator.Send(command);
 
