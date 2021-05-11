@@ -7,9 +7,10 @@ import { SignUpComponent } from "./components/sign-up/sign-up.component";
 import { SharedModule } from "../shared/shared.module";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { IdentityInterceptor } from "./guards/identity.interceptor";
+import { UserProfilePageComponent } from './components/user-profile-page/user-profile-page.component';
 
 @NgModule({
-  declarations: [SignInComponent, SignUpComponent],
+  declarations: [SignInComponent, SignUpComponent, UserProfilePageComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
