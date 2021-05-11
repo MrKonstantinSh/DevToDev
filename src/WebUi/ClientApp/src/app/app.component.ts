@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-root",
@@ -7,5 +8,11 @@ import { Component, OnInit } from "@angular/core";
 export class AppComponent implements OnInit {
   title = "DevToDev";
 
-  ngOnInit(): void {}
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    if (localStorage.getItem("accessToken")) {
+      this.router.navigateByUrl("/search");
+    }
+  }
 }
