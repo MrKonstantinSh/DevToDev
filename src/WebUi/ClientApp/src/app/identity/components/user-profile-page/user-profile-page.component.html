@@ -3,6 +3,9 @@
   <div class="row">
     <h1 class="title">Your profile</h1>
     <div class="user-profile-form">
+      <div *ngIf="editError" class="error-box">
+        <p class="error-box__message">{{ editError }}</p>
+      </div>
       <form class="form" [formGroup]="userProfileForm" (ngSubmit)="onSubmit()">
         <div class="form-item">
           <label class="form-item__label">Username</label>

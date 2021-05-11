@@ -44,7 +44,6 @@ export class NavBarComponent implements OnInit {
   }
 
   redirectToUserProfilePage() {
-    console.log(123);
     this.router.navigateByUrl("/my-profile");
   }
 
