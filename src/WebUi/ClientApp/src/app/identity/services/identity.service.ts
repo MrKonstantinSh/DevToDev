@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable, of } from "rxjs";
 import { catchError, mapTo, map, tap } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 import { User } from "../../shared/models/user";
+import { EditUserInfoDto } from "../dtos/editUserInfoDto";
 import { SignInDto } from "../dtos/signInDto";
 import { SignUpDto } from "../dtos/signUpDto";
 
@@ -66,7 +67,6 @@ export class IdentityService {
       .pipe(
         tap((response: any) => {
           localStorage.setItem("accessToken", response.accessToken);
-          console.log(response);
         }),
         mapTo(true),
         catchError(() => {
@@ -86,6 +86,15 @@ export class IdentityService {
           return of(false);
         })
       );
+  }
+
+  editUserInfo(values: EditUserInfoDto): Observable<boolean> {
+    return this.httpClient.put(this.baseUrl + "/identity/update", values).pipe(
+      mapTo(true),
+      catchError(() => {
+        return of(false);
+      })
+    );
   }
 
   logOut(): Observable<boolean> {

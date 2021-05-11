@@ -43,6 +43,10 @@ export class NavBarComponent implements OnInit {
     this.router.navigateByUrl("/article-constructor");
   }
 
+  redirectToUserProfilePage() {
+    this.router.navigateByUrl("/my-profile");
+  }
+
   private loadCurrentUser() {
     if (localStorage.getItem("accessToken")) {
       this.identityService.loadCurrentUser().subscribe(
