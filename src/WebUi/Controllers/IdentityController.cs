@@ -39,7 +39,6 @@ namespace WebUi.Controllers
             return await Mediator.Send(command);
         }
 
-        [Authorize]
         [HttpPost("refresh-tokens")]
         public async Task<ActionResult<AccessTokenDto>> RefreshTokens(RefreshTokensCommand command)
         {
