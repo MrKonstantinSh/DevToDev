@@ -26,7 +26,7 @@ export class NavBarComponent implements OnInit {
     this.identityService.logOut().subscribe(
       (res) => {
         if (res) {
-          this.router.navigateByUrl("/");
+          this.router.navigateByUrl("/sign-in");
         }
       },
       (error) => {

@@ -13,6 +13,8 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     if (localStorage.getItem("accessToken")) {
       this.router.navigateByUrl("/search");
+    } else {
+      this.router.navigateByUrl("/sign-in");
     }
   }
 }
