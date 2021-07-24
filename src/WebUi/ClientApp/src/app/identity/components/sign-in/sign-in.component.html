@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="row">
+    <section class="sign-in-menu">
+      <a [routerLink]="['/']" routerLinkActive="active"
+        ><h1 class="sign-in-logo">DevToDev</h1></a
+      >
+      <div class="sign-in-menu__item">
+        <label class="sign-in-menu__label">New to DevToDev?</label>
+        <button
+          class="sign-in-menu__button"
+          [routerLink]="['/sign-up']"
+          routerLinkActive="active"
+        >
+          Sign Up
+        </button>
+      </div>
+    </section>
+    <main class="sign-in-form">
+      <h2 class="sign-in-form__title">Sign In</h2>
+      <div *ngIf="signInError" class="error-box">
+        <p class="error-box__message">{{ signInError }}</p>
+      </div>
+      <form class="form" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+        <div class="form-item">
+          <label class="form-item__label">Email or Username</label>
+          <input
+            type="email"
+            class="form-item__input"
+            [ngClass]="
+              signInForm.get('usernameOrEmail').invalid &&
+              signInForm.get('usernameOrEmail').touched
+                ? 'validation-error__input'
+                : ''
+            "
+            formControlName="usernameOrEmail"
+          />
+          <div class="validation-error">
+            <span
+              class="validation-error__text"
+              *ngIf="
+                signInForm.get('usernameOrEmail').invalid &&
+                signInForm.get('usernameOrEmail').touched &&
+                signInForm.get('usernameOrEmail').errors['required']
+              "
+              ><i
+                class="fa fa-exclamation-triangle validation-error__icon"
+                aria-hidden="true"
+              ></i
+              >Email address is required.</span
+            >
+          </div>
+        </div>
+        <div class="form-item">
+          <label class="form-item__label">Password</label>
+          <input
+            type="password"
+            class="form-item__input"
+            [ngClass]="
+              signInForm.get('password').invalid &&
+              signInForm.get('password').touched
+                ? 'validation-error__input'
+                : ''
+            "
+            formControlName="password"
+          />
+          <div class="validation-error">
+            <span
+              class="validation-error__text"
+              *ngIf="
+                signInForm.get('password').invalid &&
+                signInForm.get('password').touched &&
+                signInForm.get('password').errors['required']
+              "
+              ><i
+                class="fa fa-exclamation-triangle validation-error__icon"
+                aria-hidden="true"
+              ></i
+              >Password is required.</span
+            >
+          </div>
+        </div>
+        <button [disabled]="signInForm.invalid" class="form__button">
+          Sign In
+        </button>
+      </form>
+    </main>
+    <section class="sign-in-footer">
+      <p class="sign-in-footer__text">© 2021 DevToDev All Rights Reserved</p>
+    </section>
+  </div>
+</div>

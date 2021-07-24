@@ -1,0 +1,26 @@
+<div class="card" [ngClass]="{ 'my-article-card': isMyArticlesPage }">
+  <img src="{{ imageUrl }}" alt="img" class="card-image" />
+  <div class="card-content">
+    <h3 class="card-content__title">{{ article?.title }}</h3>
+    <p class="card-content__description">
+      {{ description }}
+    </p>
+    <span class="card-content__date">{{ dateOfCreation }}</span>
+    <span class="card-content__separator">.</span>
+    <span class="card-content__author">{{ article?.author }}</span>
+  </div>
+  <div *ngIf="isMyArticlesPage" class="my-article-buttons">
+    <button class="my-article-button__view" (click)="viewArticle(article?.id)">
+      View
+    </button>
+    <button class="my-article-button__edit" (click)="editArticle(article?.id)">
+      Edit
+    </button>
+    <button
+      class="my-article-button__delete"
+      (click)="deleteArticle(article?.id)"
+    >
+      Delete
+    </button>
+  </div>
+</div>

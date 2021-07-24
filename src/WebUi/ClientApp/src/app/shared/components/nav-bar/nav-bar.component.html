@@ -1,0 +1,51 @@
+<div class="container menu-boarder">
+  <div class="row">
+    <section class="nav-bar">
+      <a
+        [routerLink]="(currentUser$ | async) ? ['/search'] : ['/']"
+        routerLinkActive="active"
+        ><h1 class="logo">DevToDev</h1></a
+      >
+      <ng-container *ngIf="(currentUser$ | async) === null">
+        <span>Pls login</span>
+      </ng-container>
+      <ng-container *ngIf="currentUser$ | async">
+        <div class="menu"></div>
+        <div class="user-info">
+          <button
+            [matMenuTriggerFor]="menu"
+            aria-label="User"
+            class="user-info__button"
+          >
+            <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+          </button>
+          <mat-menu #menu="matMenu" xPosition="before">
+            <span class="username-info-text menu-item__text">Signed in as</span>
+            <span class="username menu-item__text"
+              ><strong>{{ (currentUser$ | async).username }}</strong></span
+            >
+            <hr class="separator" />
+            <button
+              mat-menu-item
+              style="margin-top: 0.5rem"
+              (click)="redirectToUserProfilePage()"
+            >
+              <span class="menu-item__text">Your profile</span>
+            </button>
+            <button mat-menu-item (click)="redirectToMyArticlesPage()">
+              <span class="menu-item__text">Your articles</span>
+            </button>
+            <hr class="separator margin-bottom" />
+            <button mat-menu-item (click)="redirectToArticleConstructorPage()">
+              <span class="menu-item__text">Create article</span>
+            </button>
+            <hr class="separator" style="margin-bottom: 0.5rem" />
+            <button mat-menu-item (click)="logOut()">
+              <span class="menu-item__text">Log out</span>
+            </button>
+          </mat-menu>
+        </div>
+      </ng-container>
+    </section>
+  </div>
+</div>

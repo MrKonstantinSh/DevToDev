@@ -1,0 +1,142 @@
+<app-nav-bar></app-nav-bar>
+<div class="container">
+  <div class="row">
+    <h1 class="title">Your profile</h1>
+    <div class="user-profile-form">
+      <div *ngIf="editError" class="error-box">
+        <p class="error-box__message">{{ editError }}</p>
+      </div>
+      <form class="form" [formGroup]="userProfileForm" (ngSubmit)="onSubmit()">
+        <div class="form-item">
+          <label class="form-item__label">Username</label>
+          <input
+            type="text"
+            class="form-item__input"
+            [ngClass]="
+              userProfileForm.get('username').invalid &&
+              userProfileForm.get('username').touched
+                ? 'validation-error__input'
+                : ''
+            "
+            formControlName="username"
+          />
+          <div class="validation-error">
+            <span
+              class="validation-error__text"
+              *ngIf="
+                userProfileForm.get('username').invalid &&
+                userProfileForm.get('username').touched &&
+                userProfileForm.get('username').errors['required']
+              "
+              ><i
+                class="fa fa-exclamation-triangle validation-error__icon"
+                aria-hidden="true"
+              ></i
+              >Username is required.</span
+            >
+            <span
+              class="validation-error__text"
+              *ngIf="
+                userProfileForm.get('username').invalid &&
+                userProfileForm.get('username').touched &&
+                userProfileForm.get('username').errors['maxlength']
+              "
+              ><i
+                class="fa fa-exclamation-triangle validation-error__icon"
+                aria-hidden="true"
+              ></i
+              >Username must not exceed 25 characters.</span
+            >
+          </div>
+        </div>
+        <div class="form-item">
+          <label class="form-item__label">First name</label>
+          <input
+            type="text"
+            class="form-item__input"
+            [ngClass]="
+              userProfileForm.get('firstName').invalid &&
+              userProfileForm.get('firstName').touched
+                ? 'validation-error__input'
+                : ''
+            "
+            formControlName="firstName"
+          />
+          <div class="validation-error">
+            <span
+              class="validation-error__text"
+              *ngIf="
+                userProfileForm.get('firstName').invalid &&
+                userProfileForm.get('firstName').touched &&
+                userProfileForm.get('firstName').errors['required']
+              "
+              ><i
+                class="fa fa-exclamation-triangle validation-error__icon"
+                aria-hidden="true"
+              ></i
+              >First name is required.</span
+            >
+            <span
+              class="validation-error__text"
+              *ngIf="
+                userProfileForm.get('firstName').invalid &&
+                userProfileForm.get('firstName').touched &&
+                userProfileForm.get('firstName').errors['maxlength']
+              "
+              ><i
+                class="fa fa-exclamation-triangle validation-error__icon"
+                aria-hidden="true"
+              ></i
+              >First name must not exceed 255 characters.</span
+            >
+          </div>
+        </div>
+        <div class="form-item">
+          <label class="form-item__label">Last name</label>
+          <input
+            type="text"
+            class="form-item__input"
+            [ngClass]="
+              userProfileForm.get('lastName').invalid &&
+              userProfileForm.get('lastName').touched
+                ? 'validation-error__input'
+                : ''
+            "
+            formControlName="lastName"
+          />
+          <div class="validation-error">
+            <span
+              class="validation-error__text"
+              *ngIf="
+                userProfileForm.get('lastName').invalid &&
+                userProfileForm.get('lastName').touched &&
+                userProfileForm.get('lastName').errors['required']
+              "
+              ><i
+                class="fa fa-exclamation-triangle validation-error__icon"
+                aria-hidden="true"
+              ></i
+              >Last name is required.</span
+            >
+            <span
+              class="validation-error__text"
+              *ngIf="
+                userProfileForm.get('lastName').invalid &&
+                userProfileForm.get('lastName').touched &&
+                userProfileForm.get('lastName').errors['maxlength']
+              "
+              ><i
+                class="fa fa-exclamation-triangle validation-error__icon"
+                aria-hidden="true"
+              ></i
+              >Last name must not exceed 255 characters.</span
+            >
+          </div>
+        </div>
+        <button [disabled]="userProfileForm.invalid" class="form__button">
+          Edit profile
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

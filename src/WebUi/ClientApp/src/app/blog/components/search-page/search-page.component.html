@@ -1,0 +1,44 @@
+<app-nav-bar></app-nav-bar>
+<div class="container search-component">
+  <div class="row">
+    <div class="search-container">
+      <input
+        [(ngModel)]="searchInput"
+        class="search-input"
+        type="text"
+        placeholder="Search"
+      />
+      <button class="search-button" (click)="search()">
+        <i class="fa fa-search" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <section class="search-result">
+      <div class="discover-more-container">
+        <h3 class="discover-title">DISCOVER MORE OF WHAT MATTERS TO YOU</h3>
+        <div class="tag-buttons">
+          <button
+            *ngFor="let tag of tags"
+            class="tag-button"
+            (click)="searchByTag(tag)"
+          >
+            {{ tag }}
+          </button>
+        </div>
+      </div>
+      <div *ngIf="articles?.length == 0" class="not-found">
+        <i class="fa fa-search fa-4x" aria-hidden="true"></i>
+        <p>No search results were founds</p>
+      </div>
+      <div *ngIf="articles?.length > 0" class="search-result-container">
+        <a
+          *ngFor="let article of articles"
+          [routerLink]="['/article/' + article.id]"
+          routerLinkActive="active"
+        >
+          <app-article-card [article]="article"></app-article-card>
+        </a>
+      </div>
+    </section>
+  </div>
+</div>

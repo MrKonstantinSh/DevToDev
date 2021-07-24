@@ -1,0 +1,155 @@
+<div class="container">
+  <div class="row">
+    <section class="sign-up-menu">
+      <a [routerLink]="['/']" routerLinkActive="active"
+        ><h1 class="sign-up-logo">DevToDev</h1></a
+      >
+      <div class="sign-up-menu__item">
+        <label class="sign-up-menu__label">Already a User?</label>
+        <button
+          class="sign-up-menu__button"
+          [routerLink]="['/sign-in']"
+          routerLinkActive="active"
+        >
+          Sign In
+        </button>
+      </div>
+    </section>
+    <main class="sign-up-form">
+      <h2 class="sign-up-form__title">Create an Account</h2>
+      <form class="form" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+        <div class="form-item">
+          <label class="form-item__label">Email Address</label>
+          <input
+            type="email"
+            class="form-item__input"
+            [ngClass]="
+              signUpForm.get('email').invalid && signUpForm.get('email').touched
+                ? 'validation-error__input'
+                : ''
+            "
+            formControlName="email"
+          />
+        </div>
+        <div class="validation-error">
+          <span
+            class="validation-error__text"
+            *ngIf="
+              signUpForm.get('email').invalid &&
+              signUpForm.get('email').touched &&
+              signUpForm.get('email').errors['required']
+            "
+            ><i
+              class="fa fa-exclamation-triangle validation-error__icon"
+              aria-hidden="true"
+            ></i
+            >Email address is required.</span
+          >
+          <span
+            class="validation-error__text"
+            *ngIf="
+              signUpForm.get('email').invalid &&
+              signUpForm.get('email').touched &&
+              signUpForm.get('email').errors['pattern']
+            "
+            ><i
+              class="fa fa-exclamation-triangle validation-error__icon"
+              aria-hidden="true"
+            ></i
+            >Please enter a valid email address.</span
+          >
+          <span
+            class="validation-error__text"
+            *ngIf="
+              signUpForm.get('email').invalid &&
+              signUpForm.get('email').touched &&
+              signUpForm.get('email').errors['isEmailExists']
+            "
+            ><i
+              class="fa fa-exclamation-triangle validation-error__icon"
+              aria-hidden="true"
+            ></i
+            >This email is already taken.</span
+          >
+        </div>
+        <div class="form-item">
+          <label class="form-item__label">Password</label>
+          <input
+            type="password"
+            class="form-item__input"
+            [ngClass]="
+              signUpForm.get('password').invalid &&
+              signUpForm.get('password').touched
+                ? 'validation-error__input'
+                : ''
+            "
+            formControlName="password"
+          />
+        </div>
+        <div class="validation-error">
+          <span
+            class="validation-error__text"
+            *ngIf="
+              signUpForm.get('password').invalid &&
+              signUpForm.get('password').touched &&
+              signUpForm.get('password').errors['required']
+            "
+            ><i
+              class="fa fa-exclamation-triangle validation-error__icon"
+              aria-hidden="true"
+            ></i
+            >Password is required.</span
+          >
+        </div>
+        <div class="form-item">
+          <label class="form-item__label">Confirm password</label>
+          <input
+            type="password"
+            class="form-item__input"
+            [ngClass]="
+              signUpForm.get('rePassword').invalid &&
+              signUpForm.get('rePassword').touched
+                ? 'validation-error__input'
+                : ''
+            "
+            formControlName="rePassword"
+          />
+        </div>
+        <div class="validation-error">
+          <span
+            class="validation-error__text"
+            *ngIf="
+              signUpForm.get('rePassword').invalid &&
+              signUpForm.get('rePassword').touched &&
+              signUpForm.get('rePassword').errors['required']
+            "
+            ><i
+              class="fa fa-exclamation-triangle validation-error__icon"
+              aria-hidden="true"
+            ></i
+            >Confirm password is required.</span
+          >
+          <span
+            class="validation-error__text"
+            *ngIf="
+              signUpForm.get('rePassword').invalid &&
+              signUpForm.get('rePassword').touched &&
+              signUpForm.get('rePassword').errors['isPasswordMismatch']
+            "
+            ><i
+              class="fa fa-exclamation-triangle validation-error__icon"
+              aria-hidden="true"
+            ></i
+            >Password mismatch.</span
+          >
+        </div>
+        <button [disabled]="signUpForm.invalid" class="form__button">
+          Sign Up
+        </button>
+      </form>
+    </main>
+    <section class="sign-up-footer">
+      <p class="sign-up-footer__text">© 2021 DevToDev All Rights Reserved</p>
+    </section>
+  </div>
+</div>

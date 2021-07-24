@@ -1,0 +1,83 @@
+<app-nav-bar></app-nav-bar>
+<div class="container">
+  <div class="row">
+    <form [formGroup]="editArticleForm" (ngSubmit)="onSubmit()">
+      <h1 class="editor-title">Edit article</h1>
+      <div class="validation-error">
+        <span
+          class="validation-error__text"
+          *ngIf="
+            editArticleForm.get('title').invalid &&
+            editArticleForm.get('title').touched &&
+            editArticleForm.get('title').errors['required']
+          "
+          ><i
+            class="fa fa-exclamation-triangle validation-error__icon"
+            aria-hidden="true"
+          ></i
+          >Title is required.</span
+        >
+        <span
+          class="validation-error__text"
+          *ngIf="
+            editArticleForm.get('title').invalid &&
+            editArticleForm.get('title').touched &&
+            editArticleForm.get('title').errors['maxlength']
+          "
+          ><i
+            class="fa fa-exclamation-triangle validation-error__icon"
+            aria-hidden="true"
+          ></i
+          >Title must not exceed 100 characters.</span
+        >
+      </div>
+      <input
+        formControlName="title"
+        type="text"
+        class="editor-input"
+        placeholder="Title"
+      />
+      <div class="validation-error">
+        <span
+          class="validation-error__text"
+          *ngIf="
+            editArticleForm.get('description').invalid &&
+            editArticleForm.get('description').touched &&
+            editArticleForm.get('description').errors['required']
+          "
+          ><i
+            class="fa fa-exclamation-triangle validation-error__icon"
+            aria-hidden="true"
+          ></i
+          >Description is required.</span
+        >
+        <span
+          class="validation-error__text"
+          *ngIf="
+            editArticleForm.get('description').invalid &&
+            editArticleForm.get('description').touched &&
+            editArticleForm.get('description').errors['maxlength']
+          "
+          ><i
+            class="fa fa-exclamation-triangle validation-error__icon"
+            aria-hidden="true"
+          ></i
+          >Description must not exceed 254 characters.</span
+        >
+      </div>
+      <textarea
+        formControlName="description"
+        type="text"
+        class="editor-input textarea"
+        placeholder="Description"
+      ></textarea>
+      <div #content class="editor"></div>
+      <button
+        [disabled]="editArticleForm.invalid"
+        class="publish-article__button"
+      >
+        Edit article
+      </button>
+    </form>
+  </div>
+</div>
