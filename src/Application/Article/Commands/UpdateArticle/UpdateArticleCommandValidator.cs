@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
 
-namespace DevToDev.Application.Article.Commands.UpdateArticleCommand
+namespace DevToDev.Application.Article.Commands.UpdateArticle
 {
-    public class UpdateArticleCommandValidator : AbstractValidator<UpdateArticleCommand>
+    public class UpdateArticleCommandValidator : AbstractValidator<UpdateArticle.UpdateArticleCommand>
     {
         public UpdateArticleCommandValidator()
         {

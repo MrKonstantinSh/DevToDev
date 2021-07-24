@@ -2,11 +2,11 @@
 <div class="container">
   <div class="row">
     <h1 class="title">Your articles</h1>
-    <div *ngIf="articles.length == 0" class="not-found">
+    <div *ngIf="articles?.length == 0" class="not-found">
       <i class="fa fa-search fa-4x" aria-hidden="true"></i>
       <p>You haven't written any articles :(</p>
     </div>
-    <section *ngIf="articles.length > 0" class="your-articles">
+    <section *ngIf="articles?.length > 0" class="your-articles">
       <app-article-card
         *ngFor="let article of articles"
         [article]="article"

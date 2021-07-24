@@ -6,13 +6,19 @@ import {
   HttpInterceptor,
   HttpErrorResponse,
 } from "@angular/common/http";
-import { Observable, throwError } from "rxjs";
-import { catchError } from "rxjs/operators";
-import { Router } from "@angular/router";
+import { BehaviorSubject, Observable, throwError } from "rxjs";
+import getBrowserFingerprint from "get-browser-fingerprint";
+import { IdentityService } from "../services/identity.service";
+import { catchError, filter, switchMap, take } from "rxjs/operators";
 
 @Injectable()
 export class IdentityInterceptor implements HttpInterceptor {
-  constructor(private router: Router) {}
+  private isRefreshing = false;
+  private refreshAccessTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(
+    null
+  );
+
+  constructor(private identityService: IdentityService) {}
 
   intercept(
     request: HttpRequest<any>,
@@ -47,9 +53,31 @@ export class IdentityInterceptor implements HttpInterceptor {
   }
 
   private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
-    localStorage.removeItem("accessToken");
-    this.router.navigateByUrl("/sign-in");
+    if (!this.isRefreshing) {
+      this.isRefreshing = true;
+      this.refreshAccessTokenSubject.next(null);
 
-    return next.handle(null);
+      const browserFingerprint: string = getBrowserFingerprint().toString();
+
+      return this.identityService.refreshTokens(browserFingerprint).pipe(
+        switchMap((response: any) => {
+          this.isRefreshing = false;
+          this.refreshAccessTokenSubject.next(response.accessToken);
+          return next.handle(
+            this.addAccessTokenToRequest(request, response.accessToken)
+          );
+        })
+      );
+    } else {
+      return this.refreshAccessTokenSubject.pipe(
+        filter((accessToken) => accessToken != null),
+        take(1),
+        switchMap((accessToken) => {
+          return next.handle(
+            this.addAccessTokenToRequest(request, accessToken)
+          );
+        })
+      );
+    }
   }
 }

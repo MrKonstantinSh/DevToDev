@@ -30,11 +30,6 @@ export class UserProfilePageComponent implements OnInit {
       if (!result) {
         this.editError = "This Username is already taken.";
       }
-
-      const browserFingerprint: string = getBrowserFingerprint().toString();
-      this.identityService.refreshTokens(browserFingerprint).subscribe(() => {
-        this.fillFields();
-      });
     });
   }
 
