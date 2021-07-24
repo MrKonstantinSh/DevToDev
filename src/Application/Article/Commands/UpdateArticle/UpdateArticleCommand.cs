@@ -6,7 +6,7 @@ using DevToDev.Application.Common.Security;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace DevToDev.Application.Article.Commands.UpdateArticleCommand
+namespace DevToDev.Application.Article.Commands.UpdateArticle
 {
     [Authorize(Roles = "User")]
     public class UpdateArticleCommand : IRequest

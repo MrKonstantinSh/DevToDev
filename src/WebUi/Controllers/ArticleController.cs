@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using DevToDev.Application.Article.Commands.CreateArticle;
 using DevToDev.Application.Article.Commands.DeleteArticle;
-using DevToDev.Application.Article.Commands.UpdateArticleCommand;
+using DevToDev.Application.Article.Commands.UpdateArticle;
 using DevToDev.Application.Article.Dtos;
 using DevToDev.Application.Article.Queries.GetArticleById;
 using DevToDev.Application.Article.Queries.GetArticleByKeyWords;

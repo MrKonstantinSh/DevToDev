@@ -2,13 +2,11 @@
 using System.Threading;
 using System.Threading.Tasks;
 using DevToDev.Application.Common.Interfaces;
-using DevToDev.Application.Common.Security;
 using DevToDev.Application.Identity.Dtos;
 using MediatR;
 
 namespace DevToDev.Application.Identity.Commands.RefreshToken
 {
-    [Authorize(Roles = "User")]
     public class RefreshTokensCommand : IRequest<AccessTokenDto>
     {
         public string Fingerprint { get; set; }

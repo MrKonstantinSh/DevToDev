@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using DevToDev.Application.Common.Interfaces;
 using DevToDev.Infrastructure.Persistence;
 using DevToDev.Infrastructure.Services;
@@ -35,7 +36,8 @@ namespace DevToDev.Infrastructure
                         ValidateLifetime = true,
                         IssuerSigningKey =
                             new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration["AccessToken:SecretKey"])),
-                        ValidateIssuerSigningKey = true
+                        ValidateIssuerSigningKey = true,
+                        ClockSkew = TimeSpan.Zero
                     };
                 });
 

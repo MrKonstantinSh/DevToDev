@@ -2,11 +2,13 @@
 using System.Threading.Tasks;
 using DevToDev.Application.Common.Exceptions;
 using DevToDev.Application.Common.Interfaces;
+using DevToDev.Application.Common.Security;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace DevToDev.Application.Article.Commands.DeleteArticle
 {
+    [Authorize(Roles = "User")]
     public class DeleteArticleCommand : IRequest
     {
         public int Id { get; set; }

@@ -7,3 +7,19 @@
   letter-spacing: 3px;
   color: #333c48;
 }
+
+.not-found {
+  float: left;
+  width: 100%;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #333c48;
+  text-transform: uppercase;
+}
+
+.not-found p {
+  margin: 0;
+  margin-top: 2rem;
+}
